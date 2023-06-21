@@ -70,9 +70,12 @@ class AuthController extends Controller
     }
 
     public function signoutPostback() {
+
+        // Session::invalidate();
+
+
         Auth::logout();
         Session::flush();
-        //////
         return redirect('/');
     }
 }

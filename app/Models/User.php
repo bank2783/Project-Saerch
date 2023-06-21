@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function Project_author(){
+        return $this->hasMany(Project_author::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
