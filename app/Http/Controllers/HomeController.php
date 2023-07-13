@@ -66,4 +66,11 @@ class HomeController extends Controller
         $Advisor = Advisor::all();
         return view('profile.profile_edit',compact('project_data','Category','Curricolumn','Advisor'));
     }
+
+    public function homeSearch(Request $request){
+        $keyword = $request->input('keyword_search');
+        $project_data = Projects::where('project_name_th','like','%'.$keyword.'%')->get();
+
+        return view('welcome',compact('project_data','keyword'));
+    }
 }

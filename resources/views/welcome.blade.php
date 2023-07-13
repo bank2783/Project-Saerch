@@ -28,26 +28,32 @@
 
     </head>
     <body class="antialiased">
-        <div class="container">
+        <div class="container-fluid">
             @include('layout.header')
-
 
         </div>
         <div class="row">
 
         </div>
-        <div class="container">
+        <div class="container mt-5">
 
             <div class="row d-flex justify-content-center">
                 <div class="row col-lg-4">
-                    <div class="col-1 input-group">
+                    <form action="{{route('home_search')}}" class="col-1 input-group" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <span class="input-group-text bg-primary border border-primary" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                           </svg>
                         </span>
-                        <input type="email" class="form-control border border-primary" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ค้นหา">
+                        <input type="text" name="keyword_search" class="form-control border border-primary" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ค้นหา">
                         <button  type="submit" class="btn btn-primary input-group-text" style="font-size: 14px;">Search</button></label>
+                    </form>
+                    @if (isset($keyword))
+                    <div class="col-12 mt-4">
+                        <span>ผลการค้นหาคำว่า "{{$keyword}}"</span>
                     </div>
+
+                    @endif
                 </div>
             </div>
                     <div class="row d-flex justify-content-center mt-5">
@@ -149,29 +155,7 @@
         </div>
 
 
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-
-
-
-
-
-
-
-                </div>
             </div>
         </div>
     </body>

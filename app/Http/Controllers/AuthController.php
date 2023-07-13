@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use NSRU\App;
 use Illuminate\Support\Str;
 
@@ -78,4 +79,47 @@ class AuthController extends Controller
         Session::flush();
         return redirect('/');
     }
+
+    public function login(){
+
+
+    return view('Login.login');
+    }
+
+    public function register(){
+
+
+    return view('login.register');
+    }
+
+    public function RegisterPost(Request $request){
+
+        // $request -> validate([
+        //     'frist_name' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        //     'passwordconfirm' => 'required',
+        // ]);
+        $user = User::create([
+            'name' => $request -> first_name,
+            'email' => $request -> email,
+            'password' => Hash::make($request -> password),
+        ]);
+        Auth::login($user);
+        return redirect('/');
+    }
+    public function loginPost(Request $request){
+        $credentials = $request -> validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        if(Auth::attempt($credentials)){
+            return redirect()->intended('/');
+        }else{
+            return redirect()->back()->withErrors(['email' => 'Invalid credentials']);
+        }
+
+    }
+
 }

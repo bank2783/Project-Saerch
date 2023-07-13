@@ -7,8 +7,9 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-
+        <script src="{{asset('js/myJs.js')}}"></script>
         <link href='https://fonts.googleapis.com/css?family=Mitr' rel='stylesheet'>
+        <link href="https://fonts.cdnfonts.com/css/comfortaa" rel="stylesheet">
         <link href="{{ asset('CSS\homeCss\style.css') }}" rel="stylesheet">
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -21,7 +22,7 @@
         <style>
             body {
                 /* font-family: 'Nunito', sans-serif; */
-                font-family: 'Mitr';font-size: 22px;
+                font-family: 'Mitr';font-size: 18px;
             }
         </style>
 
@@ -33,34 +34,55 @@
 
         </div>
         <div class="row">
+            <div class="container mt-5">
+                <div class="row d-flex justify-content-center">
+                    <form class="row col-xl-6 col-md-8 col-12 rounded-3 shadow-sm register-card" action="{{route('register_post')}}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        @csrf
+                            <span class="text-center fs-2 mt-3 text-primary">สมัครสมาชิก</span>
+                            <div class="col-6 mb-3 mt-3">
+                                <label class="form-label">ชื่อจริง นามสกุล</label>
+                                <input type="text" name="first_name" class="form-control border-white" placeholder="first name">
+                            </div>
+                            <div class="col-6 mb-3 mt-3 ">
+                                <label class="form-label">รหัสผ่าน</label>
+                                <input type="password" name="password" class="form-control border-white" id="password" placeholder="Password">
+                            </div>
 
+                            <div class="col-6 mb-3 mt-3">
+                                <label class="form-label">อีเมลล์</label>
+                                <input type="email" name="email" class="form-control border-white" placeholder="Email">
+                            </div>
+
+                            <div class="col-6 mb-3 mt-3">
+                                <label class="form-label">ยืนยันรหัสผ่าน</label>
+                                <input type="password" name="confirmpassword" class="form-control border-white" id="confirmpassword" placeholder="Password">
+                            </div>
+                            <div class="col-12 d-flex justify-content-center mt-3 mb-3">
+                                <button type="submit" class="btn btn-primary" id="registerButton">สมัครสมาชิก</button>
+                            </div>
+                    </form>
+
+
+
+                <style>
+                    .register-card{
+                        background: linear-gradient(rgb(185, 221, 255), rgb(236, 250, 255));
+                    }
+                </style>
+
+
+                </div>
+
+
+            </div>
+
+            </div>
         </div>
 
 
 
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-
-
-
-
-
-
-
-                </div>
             </div>
         </div>
     </body>

@@ -18,12 +18,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ HomeController::class, 'index' ]);
+Route::post('/',[HomeController::class,'homeSearch'])->name('home_search');
 
 Route::get('/signin', [ AuthController::class, 'signin' ])->name('signin');
 Route::post('/signin', [ AuthController::class, 'signinPostback' ])->name('signin_postback');
 Route::get('/signout', [ AuthController::class, 'signout' ])->name('signout');
 Route::get('/signout_postback', [ AuthController::class, 'signoutPostback' ])->name('signout_postback');
 
+Route::get('/login',[AuthController::class,'login'])->name('login');
+Route::post('/login',[AuthController::class,'loginPost'])->name('login_post');
+Route::get('/register',[AuthController::class,'Register'])->name('register');
+Route::post('/register',[AuthController::class,'RegisterPost'])->name('register_post');
 
 
 

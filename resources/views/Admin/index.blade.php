@@ -13,6 +13,7 @@
 
     <!-- Custom fonts for this template-->
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -29,6 +30,7 @@
 </head>
 
 <body id="page-top">
+    <script src="{{asset('js/admin/charts.js')}}"></script>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -502,7 +504,7 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
 
-                                    {!! $chart->container() !!}
+
 
                                     <div class="chart-area">
 
@@ -538,7 +540,8 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                        <canvas id="myChart"></canvas>
+                                        {{-- <canvas id="myPieChart"></canvas> --}}
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">

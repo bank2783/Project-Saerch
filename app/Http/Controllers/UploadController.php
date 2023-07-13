@@ -20,8 +20,9 @@ class UploadController extends Controller
     public function showUploadForm(){
         $curricolumn = Curricolumn::all();
         $category = Category::all();
+        $Advisor = Advisor::all();
 
-        return view('Project.upload',compact('curricolumn','category'));
+        return view('Project.upload',compact('curricolumn','category','Advisor'));
     }
 
     public function storeProject(Request $res){

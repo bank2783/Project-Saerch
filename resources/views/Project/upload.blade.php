@@ -17,23 +17,19 @@
 
         <style>
             body {
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Mitr';;
+
             }
         </style>
 
 
     </head>
+    <div class="container-fluid">
+        @include('layout.header')
+    </div>
     <body class="antialiased">
-        <div class="container">
-            @include('layout.header')
 
-
-        </div>
-        <div class="container mt-5">
-            <div class="">
-                <p class="fw-bold">Project Upload</p>
-            </div>
-            @if($errors->any())
+        @if($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach($errors->all() as $error)
@@ -44,10 +40,25 @@
 @endif
 
 
-            <form class="row my-5" action="{{route('store_project')}}" method="POST" enctype="multipart/form-data">
+
+        <div class="container mt-5">
+            <div class="row">
+                <span class=" fs-2">อัพโหลดโครงงาน</span>
+
+            </div>
+            <div class="row mt-3 border-bottom border-primary border-1">
+
+            </div>
+            <div class="row mt-5">
+                <span class=" fs-3" style="color:#07098f ">ชื่อโครงงาน</span>
+            </div>
+
+
+
+            <form class="row my-3" action="{{route('store_project')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @csrf
-                <div class="mb-3 col-6">
+                <div class=" col-6">
                   <label for="exampleInputEmail1" class="form-label">ชื่อโครงงานภาษาไทย</label>
                   <input type="text" name="project_name_th" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ภาษาไทย">
                   <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
@@ -57,28 +68,78 @@
                   <input type="text" name="project_name_en" class="form-control" id="exampleInputPassword1" placeholder="ภาษาอังกฤษ">
                   <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
                 </div>
+
+
+                <div class="row mt-5">
+                    <span class=" fs-3" style="color:#07098f ">บทคัดย่อ</span>
+                </div>
+
+
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาไทย</label>
                     <textarea type="text" name="abstract_th" class="form-control" id="exampleInputPassword1"></textarea>
-
                 </div>
+
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาอังกฤษ</label>
                     <textarea type="text" name="abstract_eng" class="form-control" id="exampleInputPassword1"></textarea>
+                </div>
 
+                <div class="row mt-5">
+                    <span class=" fs-3" style="color:#07098f ">คีย์เวิร์ด</span>
                 </div>
+
                 <div class="mb-3 col-6">
-                    <label for="exampleInputPassword1" class="form-label">Keyword TH</label>
+                    <label for="exampleInputPassword1" class="form-label">คีย์เวิร์ดภาษาไทย</label>
                     <input type="text" name="keyword_th" class="form-control" id="exampleInputPassword1">
+                    <div id="emailHelp" class="form-text">ใส่ , เพื่อแยกคำคีย์เวิร์ด ตัวอย่างเช่น เว็บไซต์,ฐานข้อมูล,โปรแกรม</div>
                 </div>
                 <div class="mb-3 col-6">
-                    <label for="exampleInputPassword1" class="form-label">Keyword EN</label>
+                    <label for="exampleInputPassword1" class="form-label">คีย์เวิร์ดภาษาอังกฤษ</label>
                     <input type="text" name="keyword_eng" class="form-control" id="exampleInputPassword1">
                 </div>
 
+
+                <div class="row mt-5">
+                    <span class=" fs-3" style="color:#07098f ">อาจารย์ที่ปรึกษา</span>
+                </div>
+
                 <div class="mb-3 col-6">
-                    <label for="exampleInputPassword1" class="form-label">Project file PDF</label>
-                    <input type="file" name="project_file" class="form-control" id="exampleInputPassword1">
+                    <label for="exampleInputPassword1" class="form-label">ชื่ออาจารย์ที่ปรึกษา</label>
+                    <select class="form-select" name="advisor_name" aria-label="Default select example">
+                        <option selected>ชื่ออาจารย์ที่ปรึกษา...</option>
+                        @foreach ($Advisor as  $row )
+                        <option value="{{$row -> id}}">{{$row -> advisor_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3 col-3">
+                    <label for="exampleInputPassword1" class="form-label">อีเมลล์อาจารย์ที่ปรึกษา</label>
+                    <input type="text" name="advisor_email" class="form-control" id="exampleInputPassword1" >
+                </div>
+
+                <div class="mb-3 col-3">
+                    <label for="exampleInputPassword1" class="form-label">เบอร์โทรอาจารย์ที่ปรึกษา</label>
+                    <input type="text" name="advisor_tel" class="form-control" id="exampleInputPassword1" >
+                </div>
+
+
+
+
+                <div class="mb-3 col-3">
+                    <label for="exampleInputPassword1" class="form-label">เพศ</label>
+                    <select class="form-select" name="author_gender" aria-label="Default select example">
+                        <option selected>เลือกเพศ</option>
+                        <option value="1">หญิง</option>
+                        <option value="2">ชาย</option>
+                        <option value="3">อื่น ๆ</option>
+                    </select>
+                </div>
+
+
+                <div class="row mt-5">
+                    <span class=" fs-3" style="color:#07098f ">รายละเอียดของโครงงาน</span>
                 </div>
 
                 <div class="mb-3 col-3">
@@ -90,6 +151,7 @@
                         @endforeach
                     </select>
                 </div>
+
                 <div class="mb-3 col-3">
                     <label for="exampleInputPassword1" class="form-label">หลักสูตร</label>
                     <select class="form-select" name="curricolumn" aria-label="Default select example">
@@ -100,19 +162,16 @@
                       </select>
                 </div>
 
+                <div class="mb-3 col-3">
+                    <label for="exampleInputPassword1" class="form-label">Project file PDF</label>
+                    <input type="file" name="project_file" class="form-control" id="exampleInputPassword1">
+                </div>
 
-                <div class="mb-3 col-6">
-                    <label for="exampleInputPassword1" class="form-label">ชื่ออาจารย์ที่ปรึกษา</label>
-                    <input type="text" name="advisor_name" class="form-control" id="exampleInputPassword1" >
+
+                <div class="row mt-5">
+                    <span class=" fs-3" style="color:#07098f ">ผู้อัพโหลด</span>
                 </div>
-                <div class="mb-3 col-3">
-                    <label for="exampleInputPassword1" class="form-label">Email</label>
-                    <input type="text" name="advisor_email" class="form-control" id="exampleInputPassword1" >
-                </div>
-                <div class="mb-3 col-3">
-                    <label for="exampleInputPassword1" class="form-label">เบอร์โทร</label>
-                    <input type="text" name="advisor_tel" class="form-control" id="exampleInputPassword1" >
-                </div>
+
                 <div class="mb-3 col-6">
                     <label for="exampleInputPassword1" class="form-label">ชื่อผู้อัพโหลด</label>
                     <input type="text" name="author_name" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->name}}">
@@ -121,35 +180,92 @@
                     <label for="exampleInputPassword1" class="form-label">รหัสนักศึกษา</label>
                     <input type="text" name="author_sid" class="form-control" id="exampleInputPassword1">
                 </div>
-                <div class="mb-3 col-3">
-                    <label for="exampleInputPassword1" class="form-label">เพศ</label>
-                    <select class="form-select" name="author_gender" aria-label="Default select example">
-                        <option selected>เลือกเพศ</option>
-                        <option value="1">หญิง</option>
-                        <option value="2">ชาย</option>
-                        <option value="3">อื่น ๆ</option>
-                    </select>
-                </div>
 
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-3">
                     <label for="exampleInputPassword1" class="form-label">เบอร์โทร</label>
                     <input type="text" name="author_tel" class="form-control" id="exampleInputPassword1">
                 </div>
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-3">
                     <label for="exampleInputPassword1" class="form-label">Email</label>
                     <input type="email" name="author_email" class="form-control" id="exampleInputPassword1">
                 </div>
 
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-3">
-                            <button type="submit" class="btn btn-primary mt-3" style="width: 100%">อัพโหลด</button>
-                        </div>
+                <div class="row mt-5">
+                    <span class=" fs-3" style="color:#07098f ">เพิ่มชื่อสมาชิก</span>
+                </div>
 
-                    </div>
-              </form>
 
+
+                <div class="mb-3 col-12">
+                <label>กดปุ่มเพิ่มเพื่อเพิ่มช่องกรอกข้อมูลสำหรับใส่ชื่อสมาชิกในโครงาน</label>
+                </div>
+
+                <div class="mb-3 col-3">
+                    <span class="btn btn-success bg-success addInput-btn mb-3" onclick="addInput()">เพิ่มช่องกรอกข้อมูล</span>
+                <div id="inputContainer">
 
                 </div>
+                </div>
+
+                <script>
+
+                    var counter = 0;
+                function addInput() {
+                    var inputContainer = document.getElementById('inputContainer');
+                    var inputWrapper = document.createElement('div');
+                    inputWrapper.classList.add('input-wrapper');
+
+                    var s_id = document.createElement('label');
+                    s_id.setAttribute('class','form-label');
+                    s_id.textContent = "รหัสนักศึกษา";
+                    inputWrapper.appendChild(s_id);
+
+                    var sid_input = document.createElement('input');
+                    sid_input.setAttribute('type', 'text');
+                    sid_input.setAttribute('class', 'form-control mb-3');
+                    sid_input.setAttribute('name', 'input' + counter);
+                    inputWrapper.appendChild(sid_input);
+
+                    var s_id = document.createElement('label');
+                    s_id.setAttribute('class','form-label');
+                    s_id.textContent = "ชื่อนักศึกษา";
+                    inputWrapper.appendChild(s_id);
+
+                    var std_name_input = document.createElement('input');
+                    std_name_input.setAttribute('type', 'text');
+                    std_name_input.setAttribute('class', 'form-control mb-3');
+                    std_name_input.setAttribute('name', 'input' + counter);
+                    inputWrapper.appendChild(std_name_input);
+
+
+
+                    var deleteButton = document.createElement('span');
+                    deleteButton.setAttribute('class','btn btn-danger')
+                    inputWrapper.appendChild(deleteButton);
+
+                    deleteButton.textContent = 'ลบ';
+
+                    deleteButton.onclick = function() {
+                    inputWrapper.remove();
+                    };
+                    inputWrapper.appendChild(deleteButton);
+
+                    inputContainer.appendChild(inputWrapper);
+                    counter++;
+                    }
+                  </script>
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-3" >
+                            <button type="submit" class="btn mt-3 btn-primary" style="width: 100%;">อัพโหลด</button>
+                        </div>
+                    </div>
+
+
+              </form>
+                </div>
+
+
         {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">

@@ -17,13 +17,7 @@ class AdminController extends Controller
 {
     public function index(){
 
-        $chart = new Chart;
-        $chart->labels(['One', 'Two', 'Three', 'Four']);
-        $chart->dataset('My dataset', 'line', [1, 2, 3, 4]);
-
-
-
-     return view('Admin.index',compact('chart'));
+     return view('Admin.index');
     }
     public function ProjectList(){
         $Project_data = Projects::where('status','=','on')->get();
