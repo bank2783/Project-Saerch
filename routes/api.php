@@ -18,5 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+///// admin dachbord ////
 Route::get('/data-for-chart',[AdminDataApiController::class,'chartData'])->name('data-for-chart');
+
+
+
+//// use_checker in upload form////
+
+Route::get('/user-data-for-checker',[AdminDataApiController::class,'userChecker'])->name('user-checker');
+
+//// upload api for user cherker ////
+
