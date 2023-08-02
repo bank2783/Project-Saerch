@@ -232,7 +232,7 @@
                     sid_input.setAttribute('type', 'text');
                     sid_input.setAttribute('class', 'form-control mb-3 col-6');
                     sid_input.setAttribute('id','sid_input');
-                    sid_input.setAttribute('name', 'input' + counter);
+                    sid_input.setAttribute('name', 'sid_input_author[' + counter + ']');
                     inputWrapper.appendChild(sid_input);
 
                     let msgBox = document.createElement('div');

@@ -28,15 +28,16 @@
 
     </head>
     <body class="antialiased">
-        <div class="container">
+
             @include('layout.header')
 
 
-        </div>
+
         <div class="row">
 
         </div>
         <div class="container">
+
 
 
 

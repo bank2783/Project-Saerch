@@ -47,7 +47,7 @@ Route::post('/admin/project-list',[AdminController::class,'ProjectlistSearchPost
 Route::get('/admin/project-edit-by-id/{id}',[AdminController::class,'ProjectEditListById'])->name('admin_view_edit-by_id');
 Route::post('/admin/project-edit-by-id/{id}',[AdminController::class,'ProjectEditListByIdPost'])->name('admin_view_edit-by_id-post');
 
-
+Route::get('/admin/tables',[AdminController::class,'showTables'])->name('show_tables');
 // Route::get('/', function () {
 //     return view('welcome');
 // });

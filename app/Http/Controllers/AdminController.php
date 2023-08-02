@@ -73,4 +73,9 @@ class AdminController extends Controller
 
         return view('Admin.edit.project_list',compact('Project_data'))->with('sid_search',$sid_search);
     }
+
+    public function showTables(){
+
+        return view('Admin.tables.tables');
+    }
 }

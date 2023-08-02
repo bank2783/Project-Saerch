@@ -13,6 +13,7 @@ use App\Models\Projects;
 use App\Models\Project_author;
 use App\Models\Category;
 use App\Models\Curricolumn;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use SplFileInfo;
 
 class HomeController extends Controller
@@ -46,15 +47,15 @@ class HomeController extends Controller
 
         $user_id = Auth::user()->id;
 
-        if($project_author = Project_author::where('user_id','=',$user_id)->first()){
-            $project_data = Projects::where('id','=',$project_author -> project_id)->first();
+        $project_author_data = Project_author::where('user_id','=',$user_id)->first();
+
+        $project_id = $project_author_data -> project_id;
+        $project_data = Projects::where('id','=',$project_id)->first();
+
             $filePath = 'public/bird_mark,+Journal+manager,+153_สมพล+สุขเจริญพงษ์.pdf';
             $fileSize = Storage::size($filePath);
             return view('profile.profile',compact('project_data','fileSize'));
 
-        }else{
-            return redirect('/');
-        }
 
     }
 

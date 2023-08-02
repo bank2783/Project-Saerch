@@ -13,6 +13,7 @@ use App\Models\Projects;
 use App\Models\Author;
 use App\Models\Advisor;
 use App\Models\Project_author;
+use App\Models\User;
 
 
 class UploadController extends Controller
@@ -145,6 +146,30 @@ class UploadController extends Controller
         'user_id' => Auth::user()->id,
         'status' => 'on'
     ]);
+
+    if($res -> input('sid_input_author')){
+        $sid_author = $res -> input('sid_input_author');
+
+        $user_ids = collect();
+
+        foreach($sid_author as $sid_author_value){
+          $user = User::where('email','=',$sid_author_value)->first();
+             if($user) {
+                 $user_ids -> puch($user->id);
+            }
+        }
+
+        foreach($user_ids as $user_id_value){
+            $project_author_user_id = Project_author::create([
+                'project_id' => $projects_insert->id,
+                'user_id' => $user_id_value
+            ]);
+
+        }
+
+    }
+
+
 
     return redirect()->back();
 

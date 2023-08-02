@@ -8,15 +8,17 @@
 
         <!-- Fonts -->
 
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <link href='https://fonts.googleapis.com/css?family=Mitr' rel='stylesheet'>
         <link href="{{ asset('CSS\homeCss\style.css') }}" rel="stylesheet">
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
         <!-- Styles -->
@@ -27,8 +29,9 @@
         <style>
             body {
                 /* font-family: 'Nunito', sans-serif; */
-                font-family: 'Mitr';font-size: 22px;
-                background: linear-gradient(rgb(221, 239, 255), rgb(255, 255, 255));
+                font-family: 'Mitr' , sans-serif;
+                background-color: #f6f7fc;
+
             }
         </style>
 
@@ -39,10 +42,109 @@
     </head>
     <body class="antialiased">
 
-        <div class="row">
+            <div class="row">
+                <div class="col top-card">
+                    <div class="container">
+                        <div class="row fs-2" style="margin-top:15px;">
+                            <div class="col">
+                                <span class="text-white">CIT Project Database</span>
+                            </div>
+                        </div>
+                        <div class="row fs-5">
+                            <div class="col">
+                                <span class="text-white">คณะวิทยาศาสตร์และเทคโนโลยี</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span class="text-white">มหาวิทยาลัยราชภัฎนครสวรรค์</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="container container-lerg" style="margin-top:50px;">
+            <div class="row bg-white rounded-2 shadow-sm">
+                <div class="col">
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <span class="fs-3" style="color:#07098f ">รายการโครงงาน</span>
+                        </div>
+                        <div class="col-3 d-flex align-items-center fs-4 mt-3">
+                            ค้นหา
+                        </div>
+                        <div class="col mt-3">
+                            <select class="form-select border" aria-label="Default select example">
+                                <option selected>เลือกสาขา...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+                        <div class="col mt-3">
+                            <select class="form-select border" aria-label="Default select example">
+                                <option selected class="text-secondary">ประเภท...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+                        <div class="col-3 mt-3 d-flex align-items-center justify-content-end">
+                            <div class="input-group d-flex">
+
+                                <input type="text" name="keyword_search" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ค้นหา">
+                                <span class="input-group-text" id="basic-addon1" style="background-color: #07098f">
+                                    <i class="bi bi-search text-white"></i>
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <table class="table table-hover mt-5">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="col-5" class="text-secondary">ชื่อโครงงาน</th>
+                            <th scope="col" class="text-secondary">ประเภท</th>
+                            <th scope="col" class="text-secondary">สาขาวิชา</th>
+                            <th scope="col" class="text-secondary">ผู้วิจัย</th>
+                            <th scope="col" class="text-secondary">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($project_data as $row)
+                         <tr>
+                         <th scope="row">
+                            {{$row->project_name_th}}
+                         </th>
+                         <td>{{$row -> Category -> category_name}}</td>
+                    <td>{{$row -> Curricolumn -> curricolumn_name}}</td>
+
+                    <td>{{$row -> Author -> author_name }}</td>
+                    <td>
+                        <a href="#" class="btn btn-primary">
+                            <i class="bi bi-eye " style="color:#ffffff"></i>
+                        </a>
+
+                    </td>
+                 </tr>
+                        @endforeach
+
+
+                        </tbody>
+                </table>
+
+                </div>
+            </div>
+
+
 
         </div>
-        <div class="container mt-5">
+
+        <div class="container mt-5 container-mobile">
 
             <div class="row d-flex justify-content-center">
                 <div class="row col-lg-4">

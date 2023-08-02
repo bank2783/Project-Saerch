@@ -1,11 +1,43 @@
 /* styles.css */
-
+@font-face {
+    font-family: 'ThaisarabanPSK';
+    src: url(/font/th-sarabun-psk/THSarabun.ttf) format('truetype');
+}
 
 .project {
     height: auto;
     border-radius: 20px;
 
     background: linear-gradient(rgb(196, 226, 255), rgb(236, 250, 255));
+}
+
+.top-card{
+    background-color: #07098f;
+
+    height: 125px;
+}
+
+@media screen and (min-width:1200px) {
+    .container-mobile{
+
+        display: none;
+    }
+
+    .container-lerg{
+        /* font-family: 'ThaisarabanPSK'; */
+
+    }
+}
+
+@media screen  and (max-width:767px) {
+    .container-lerg{
+        display:none;
+    }
+    .container-mobile{
+        font-family: 'Mitr';font-size: 22px;
+    }
+
+
 }
 
 
