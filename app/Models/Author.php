@@ -23,9 +23,8 @@ class Author extends Model
     //     return $this->hasOne(Project::class);
     // }
 
-    public function curricolumns()
-    {
-        return $this->hasMany(Curricolumn::class);
+    public function curricolumn(){
+        return $this->belongsTo(curricolumn::class,'curicolumn_id','id');
     }
 
 }

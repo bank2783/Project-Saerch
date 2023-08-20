@@ -404,7 +404,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <a href="{{route('show_advisor_table')}}" class="col-xl-3 col-lg-3 col-sm-6 nav-link">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="row d-flex align-items-center">
@@ -413,6 +413,76 @@
                                         </div>
                                         <div class="col-3">
                                             <h1><i class="bi bi-person-lines-fill"></i></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h5 class="fw-bold">Author Table</h5>
+                                        </div>
+                                        <div class="col-3">
+                                            <h1><i class="bi bi-person-fill-up"></i></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h5 class="fw-bold">Project Author Table</h5>
+                                        </div>
+                                        <div class="col-3">
+                                            <h1><i class="bi bi-people"></i></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h5 class="fw-bold">Curricolumn Table</h5>
+                                        </div>
+                                        <div class="col-3">
+                                            <h1><i class="bi bi-briefcase-fill"></i></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h5 class="fw-bold">Category Table</h5>
+                                        </div>
+                                        <div class="col-3">
+                                            <h1><i class="bi bi-bookmark-fill"></i></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-8">
+                                            <h5 class="fw-bold">Users Table</h5>
+                                        </div>
+                                        <div class="col-3">
+                                            <h1><i class="bi bi-person-fill-check"></i></h1>
                                         </div>
                                     </div>
                                 </div>

@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdvisorController;
+use App\Http\Controllers\AuthorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +50,16 @@ Route::get('/admin/project-edit-by-id/{id}',[AdminController::class,'ProjectEdit
 Route::post('/admin/project-edit-by-id/{id}',[AdminController::class,'ProjectEditListByIdPost'])->name('admin_view_edit-by_id-post');
 
 Route::get('/admin/tables',[AdminController::class,'showTables'])->name('show_tables');
+Route::get('/admin/table/advisors',[AdvisorController::class,'showAdvisorTable'])->name('show_advisor_table');
+Route::post('/admin/table/advisors/create',[AdvisorController::class,'insert_advisor'])->name('insert_advisor');
+Route::post('/admin/table/advisors/delete',[AdvisorController::class,'delete_advisor'])->name('delete_advisor');
+Route::post('/admin/table/advisor/update',[AdvisorController::class,'Update_advisor'])->name('update_advisor');
+
+Route::get('/admin/table/author',[AuthorController::class,'showAuthor'])->name('showAuthor');
+Route::post('admin/table/author/update',[AuthorController::class,'authorUpdate'])->name('author_update');
+
+
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

@@ -9,20 +9,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    {{-- sweealert --}}
-
+    <title>SB Admin 2 - Dashboard</title>
+    {{-- sweet alert --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"
     integrity="sha512-gOQQLjHRpD3/SEOtalVq50iDn4opLVup2TF8c4QPI3/NmUPNZOk2FG0ihi8oCU/qYEsw4P6nuEZT2lAG0UNYaw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {{-- Jquery --}}
-
-
-    <title> Admin 2 - Dashboard</title>
-
     <!-- Custom fonts for this template-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -59,7 +56,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Home</span></a>
             </li>
 
             <!-- Divider -->
@@ -182,16 +179,17 @@
 
                     <!-- Topbar Search -->
                     <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                        action="{{route('Project_list_search_post')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input type="text" name="sid_search" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search fa-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                          </svg>
+
                                     </i>
                                 </button>
                             </div>
@@ -377,28 +375,13 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Project</h1>
-                        {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
-                    </div>
+                        <h1 class="h3 mb-0 text-gray-800">ADVISOR</h1>
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-
-
-                        <!-- Earnings (Monthly) Card Example -->
-
-
-                        <!-- Earnings (Monthly) Card Example -->
-
-
-                        <!-- Pending Requests Card Example -->
+                        @if(Session::has('sid_search'))
+                        <span>SID Search: {{ Session::get('sid_search') }}</span>
+                        @endif
 
                     </div>
-
-                    <!-- Content Row -->
 
                     <div class="row">
 
@@ -406,160 +389,172 @@
                         <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">รหัส {{$project_data -> Author -> author_sid}}</h6>
-                                    <div class="dropdown no-arrow">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Advisor List</h6>
 
-                                    </div>
+                                            <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Create
+                        </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                <div class="modal-content">
+                 <div class="modal-header">
+                     <h1 class="modal-title fs-5" id="exampleModalLabel">Advisor Create</h1>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body">
+                        <form action="{{route('insert_advisor')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">Advisor name</label>
+                              <input type="text" name="advisor_name" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label">Advisor Email</label>
+                              <input type="email" name="advisor_email" class="form-control" required id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Advisor tel</label>
+                                <input type="text" name="advisor_tel" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp">
+                              </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                 </div>
+                <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          @if(session()->has('message_success'))
+          <script>
+              swal("{{session()->get('message_success')}}","","success",{
+                  button:"OK",
+              });
+
+          </script>
+          @elseif (session()->has('message_error'))
+          <script>
+              swal("{{session()->get('message_error')}}","","error",{
+                  button:"OK",
+              });
+
+          </script>
+          @endif
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+                                    {{-- <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div> --}}
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <form class="row" action="{{route('admin_view_edit-by_id-post',$project_data -> id)}}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="mb-3 col-6">
-                                            <label for="exampleInputEmail1" class="form-label">ชื่อโครงงานภาษาไทย</label>
-                                            <input type="text" name="project_name_th" value="{{$project_data -> project_name_th}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ภาษาไทย">
-                                            <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
-                                          </div>
-                                          <div class="mb-3 col-6">
-                                            <label for="exampleInputPassword1" class="form-label">ชื่อโครงงานภาษาอังกฤษ</label>
-                                            <input type="text" name="project_name_en" value="{{$project_data -> project_name_en}}" class="form-control" id="exampleInputPassword1" placeholder="ภาษาอังกฤษ">
-                                            <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
-                                          </div>
-                                          <div class="mb-3">
-                                              <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาไทย</label>
-                                              <textarea type="text" name="abstract_th"  class="form-control" id="exampleInputPassword1">{{$project_data -> project_abstract_th}}</textarea>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
 
-                                          </div>
-                                          <div class="mb-3">
-                                              <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาอังกฤษ</label>
-                                              <textarea type="text" name="abstract_en" class="form-control" id="exampleInputPassword1">{{$project_data -> project_abstract_en}}</textarea>
-
-                                          </div>
-                                          <div class="mb-3 col-6">
-                                              <label for="exampleInputPassword1" class="form-label">Keyword TH</label>
-                                              <input type="text" name="keyword_th" value="{{$project_data -> project_keyword_th}}" class="form-control" id="exampleInputPassword1">
-                                          </div>
-                                          <div class="mb-3 col-6">
-                                              <label for="exampleInputPassword1" class="form-label">Keyword EN</label>
-                                              <input type="text" name="keyword_en" value={{$project_data -> project_keyword_en}} class="form-control" id="exampleInputPassword1">
-                                          </div>
-
-                                          <div class="mb-3 col-6">
-                                              <label for="exampleInputPassword1" class="form-label">Project file PDF</label>
-                                              <input type="file" name="project_file" class="form-control" id="exampleInputPassword1">
-                                          </div>
-
-                                          <div class="mb-3 col-3">
-                                              <label for="exampleInputPassword1" class="form-label">ประเภทของโครงงาน</label>
-                                              <select class="form-select" name="category" aria-label="Default select example">
-                                                  <option value="{{$project_data -> Category -> id}}"  selected>{{$project_data -> Category -> category_name}}</option>
-                                                  @foreach ($category as $row )
-                                                  @if ($row->id != $project_data -> Category -> id)
-                                                  <option value="{{$row -> id}}">{{$row->category_name}}</option>
-                                                  @endif
-
-                                                  @endforeach
-                                              </select>
-                                          </div>
-                                          <div class="mb-3 col-3">
-                                              <label for="exampleInputPassword1" class="form-label">หลักสูตร</label>
-                                              <select class="form-select" name="curricolumn" aria-label="Default select example">
-                                                  <option value="{{$project_data -> Curricolumn -> id}}" selected>{{$project_data -> Curricolumn -> curricolumn_name }}</option>
-                                                  @foreach ($curri as $row )
-                                                  @if ($row ->id != $project_data -> Curricolumn -> id)
-                                                  <option value="{{$row -> id}}">{{$row->curricolumn_name}}</option>
-                                                  @endif
-
-                                                  @endforeach
-                                                </select>
-                                          </div>
+                                                <th>Advisor Name</th>
+                                                <th>Advisor email</th>
+                                                <th>Advisor tel</th>
+                                                <th width="5%">Update</th>
+                                                <th width="5%">Delete</th>
 
 
-                                          <div class="mb-3 col-6">
-                                              <label for="exampleInputPassword1" class="form-label">ชื่ออาจารย์ที่ปรึกษา</label>
-                                              <select class="form-select" name="advisor">
-                                                <option selected value="{{$project_data -> Advisor -> id}}">{{$project_data -> Advisor -> advisor_name}}</option>
-                                                    @foreach ($advisor as $row )
-                                                    @if ($row -> id != $project_data -> Advisor -> id)
-                                                    <option class="form-select" name="advisor" value="{{$row -> id}}">{{$row -> advisor_name}}</option>
-                                                    @endif
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($advisor as $row )
+                                            <tr>
+                                                <td>{{$row->advisor_name}}</td>
+                                                <td>{{$row->advisor_email}}</td>
+                                                <td>{{$row->advisor_tel}}</td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#updateModal{{$row->id}}">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </button>
 
-                                                    @endforeach
-                                              </select>
-                                          </div>
-                                          <div class="mb-3 col-3">
-                                              <label for="exampleInputPassword1" class="form-label">Email</label>
-                                              <input type="text" name="advisor_email" value="{{$project_data -> Advisor -> advisor_email}}" class="form-control" id="exampleInputPassword1" >
-                                          </div>
-                                          <div class="mb-3 col-3">
-                                              <label for="exampleInputPassword1" class="form-label">เบอร์โทร</label>
-                                              <input type="text" name="advisor_tel" value="{{$project_data -> Advisor -> advisor_tel}}" class="form-control" id="exampleInputPassword1" >
-                                          </div>
-                                          <div class="mb-3 col-6">
-                                              <label for="exampleInputPassword1" class="form-label">ชื่อผู้อัพโหลด</label>
-                                              <input type="text" name="author_name" value="{{$project_data -> Author -> author_name }}" class="form-control" id="exampleInputPassword1">
-                                          </div>
-                                          <div class="mb-3 col-3">
-                                              <label for="exampleInputPassword1" class="form-label">รหัสนักศึกษา</label>
-                                              <input type="text" name="author_sid" value="{{$project_data -> Author -> author_sid }}" class="form-control" id="exampleInputPassword1">
-                                          </div>
-                                          <div class="mb-3 col-3">
-                                              <label for="exampleInputPassword1" class="form-label">เพศ</label>
-                                              <select class="form-select"  name="author_gender" aria-label="Default select example">
-                                                  <option selected>{{$project_data -> Author -> author_gender }}</option>
-                                                  <option value="หญิง">หญิง</option>
-                                                  <option value="ชาย">ชาย</option>
-                                                  <option value="อื่น ๆ">อื่น ๆ</option>
-                                              </select>
-                                          </div>
+                                                    <!-- update Modal -->
+                                                    <div class="modal fade" id="updateModal{{$row->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel{{$row->id}}" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="updateModalLabel{{$row->id}}">Advisor Update</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h3>Update</h3>
+                                                                    <form action="{{route('update_advisor')}}" method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <input type="hidden" name="advisor_id" value="{{$row->id}}">
+                                                                        <label for="exampleInputPassword1" class="form-label mt-2 ">Advisor name</label>
+                                                                        <input type="text" name="advisor_name" value="{{$row->advisor_name}}" class="form-control" required id="exampleInputPassword1">
+                                                                        <label for="exampleInputPassword1" class="form-label mt-2 ">Advisor Email</label>
+                                                                        <input type="email" name="advisor_email" value="{{$row->advisor_email}}" class="form-control" required id="exampleInputPassword1">
+                                                                        <label for="exampleInputPassword1" class="form-label mt-2 ">Advisor tel</label>
+                                                                        <input type="text" name="advisor_tel" value="{{$row->advisor_tel}}" class="form-control" required id="exampleInputPassword1">
+                                                                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                                          <div class="mb-3 col-6">
-                                              <label for="exampleInputPassword1" class="form-label">เบอร์โทร</label>
-                                              <input type="text" value={{$project_data -> Author -> author_tel }} name="author_tel"  class="form-control" id="exampleInputPassword1">
-                                          </div>
-                                          <div class="mb-3 col-6">
-                                              <label for="exampleInputPassword1" class="form-label">Email</label>
-                                              <input type="email" value={{$project_data -> Author -> author_email }} name="author_email" class="form-control" id="exampleInputPassword1">
-                                          </div>
-                                          <input type="hidden" name="project_id" value={{$project_data -> id}}>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{$row->id}}">
+                                                        <i class="bi bi-trash-fill"></i>
+                                                    </button>
 
-                                              <div class="row d-flex justify-content-center">
-                                                  <div class="col-3">
-                                                      <button type="submit" class="btn btn-primary mt-3" style="width: 100%">บันทึก</button>
-                                                  </div>
-                                              </div>
+                                                    <!-- Delete Modal -->
+                                                    <div class="modal fade" id="deleteModal{{$row->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel{{$row->id}}" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="deleteModalLabel{{$row->id}}">Delete Notify!</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h3>คุณต้องการลบหรือไม่ ?</h3>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <form action="{{route('delete_advisor')}}" method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <input type="hidden" name="advisor_id" value="{{$row->id}}">
+                                                                        <button type="submit" class="btn btn-danger">ลบ </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
-                                    </form>
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"
-                                    integrity="sha512-7VTiy9AhpazBeKQAlhaLRUk+kAMAb8oczljuyJHPsVPWox/QIXDFOnT9DUk1UC8EbnHKRdQowT7sOBe7LAjajQ=="
-                                    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                                    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-                                    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-                                    crossorigin="anonymous"></script>
-
-
-                                    @if(session()->has('message_success'))
-                                    <script>
-                                        swal("{{session()->get('message_success')}}","","success",{
-                                            button:"OK",
-                                        });
-
-                                    </script>
-                                    @elseif (session()->has('message_error'))
-                                    <script>
-                                        swal("Insert error","{{session()->get('message_error')}}","error",{
-                                            button:"OK",
-                                        });
-
-                                    </script>
-                                    @endif
+                                        </tbody>
+                                      </table>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Pie Chart -->
 
                     </div>
 
@@ -567,15 +562,7 @@
                     <div class="row">
 
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
 
-                            <!-- Project Card Example -->
-
-
-                            <!-- Color System -->
-
-
-                        </div>
 
                         <div class="col-lg-6 mb-4">
 

@@ -46,7 +46,7 @@ class AdminController extends Controller
             $project_name = $project_data -> project_bookfile;
 
         }
-        Projects::where('id',$project_id)->update([
+        $update = Projects::where('id',$project_id)->update([
             'project_name_th' => $request -> project_name_th,
             'project_name_en' => $request -> project_name_en,
             'project_abstract_th' => $request -> abstract_th,
@@ -58,7 +58,11 @@ class AdminController extends Controller
             'curricolumn_id' => $request -> curricolumn,
 
         ]);
-        return redirect()->back()->with('message', 'แก้ไขข้อมูลสำเร็จ!');
+        if($update){
+            return redirect()->back()->with('message_success', 'Update Success!');
+        }else{
+            return redirect()->back()->with('message_error', 'Update error');
+        }
     }
 
     public function ProjectlistSearchPost(Request $request){
@@ -78,4 +82,6 @@ class AdminController extends Controller
 
         return view('Admin.tables.tables');
     }
+
+
 }
