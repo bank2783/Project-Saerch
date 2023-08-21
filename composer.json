@@ -12,7 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "nesbot/carbon": "^2.66",
-        "nsru/core": "^1.16",
+        "nsru/core": "0.*",
         "twbs/bootstrap-icons": "^1.10"
     },
     "require-dev": {

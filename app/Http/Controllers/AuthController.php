@@ -12,25 +12,34 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    public function signin() {
-        $appId = env('NSRU_APP_ID');
-        $appSecret = env('NSRU_APP_SECRET');
-        $app = new App($appId, $appSecret);
-        $myAuth = $app->createMyAuth();
-        $signinPostbackUrl = $myAuth->getSigninURL(route('signin_postback'));
+
+    private $myauth;
+    private $app;
+    private $dc;
+    private $appId;
+    private $appSecret;
+    
+    
+    public function __construct(){
+        $this->appId = env('NSRU_APP_ID');
+        $this->appSecret = env('NSRU_APP_SECRET');
+        $this->app = new App($this->appId, $this->appSecret);
+        $this->myauth = $this->app->createMyAuth();
+        $this->dc = $this->app->createDataCore();
+        
+    }
+
+    public function signin() {        
+        $signinPostbackUrl = $this -> myauth->getSigninURL(route('signin_postback'));
         return redirect()->to($signinPostbackUrl);
     }
 
     public function signinPostback(Request $request) {
-
+        $this->myauth->doSigninPostback();
         $username = $request->input('username');
 
-        $appId = env('NSRU_APP_ID');
-        $appSecret = env('NSRU_APP_SECRET');
-        $app = new App($appId, $appSecret);
-        $myAuth = $app->createMyAuth();
-        $dc = $app->createDataCore();
-        if($staff = $dc->find_staff($username)) {
+        
+        if($staff = $this->dc->find_staff($username)) {
             // บุคลากร
             $email = $username.'@local';
             if($user = User::where('email', $email)->first()) {
@@ -43,7 +52,7 @@ class AuthController extends Controller
                 $newUser->save();
                 Auth::login($newUser);
             }
-        } else if($student = $dc->find_student($username)) {
+        } else if($student = $this->dc->find_student($username)) {
             // นักศึกษา
             $email = $username.'@local';
             if($user = User::where('email', $email)->first()) {
@@ -62,21 +71,16 @@ class AuthController extends Controller
     }
 
     public function signout() {
-        $appId = env('NSRU_APP_ID');
-        $appSecret = env('NSRU_APP_SECRET');
-        $app = new App($appId, $appSecret);
-        $myAuth = $app->createMyAuth();
-        $signoutPostbackUrl = $myAuth->getSignoutURL(route('signout_postback'));
+        $signoutPostbackUrl = $this->myauth->getSignoutURL(route('signout_postback'));
         return redirect()->to($signoutPostbackUrl);
     }
 
     public function signoutPostback() {
 
-        // Session::invalidate();
-
-
         Auth::logout();
         Session::flush();
+        $this->myauth->doSignoutPostback();
+        // $this->app->createMyAuth()->doSignoutPostback(url('/'));
         return redirect('/');
     }
 
