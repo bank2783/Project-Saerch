@@ -375,7 +375,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">ADVISOR</h1>
+                        <h1 class="h3 mb-0 text-gray-800">AUTHOR</h1>
 
                         @if(Session::has('sid_search'))
                         <span>SID Search: {{ Session::get('sid_search') }}</span>
@@ -390,7 +390,7 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Advisor List</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Author List</h6>
 
                                             <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -406,9 +406,8 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                      </div>
                      <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('authorInsert')}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="author_id" >
 
                             <label for="exampleInputPassword1" class="form-label mt-2 ">Author name</label>
                             <input type="text" name="author_name"  class="form-control" required id="exampleInputPassword1">
@@ -489,7 +488,7 @@
                 <td>{{$row->author_email}}</td>
                 <td>{{$row->author_tel}}</td>
                 <td>{{$row->author_gender}}</td>
-                <td>{{$row->curricolumn -> curricolumn_name}}</td>
+                <td>{{$row->curicolumn_id}}</td>
                 <td>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#updateModal{{$row->id}}">

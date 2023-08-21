@@ -39,4 +39,29 @@ class AuthorController extends Controller
             return redirect()->back()->with('message_error', 'Update not success!');
         }
     }
+
+    public function authorInsert(Request $request){
+        $validate = $request->validate([
+            'author_name' => 'required',
+            'author_sid' => 'required',
+            'author_email' => 'required|email',
+            'author_tel' => 'required',
+            'author_gender' => 'required',
+            'author_curricolumn' => 'required',
+        ]);
+
+        $insert = new Author();
+        $insert->author_name = $request->author_name; 
+        $insert->author_sid = $request->author_sid; 
+        $insert->author_mail = $request->author_email; 
+        $insert->author_tel = $request->author_tel; 
+        $insert->author_gender = $request->author_gender; 
+        $insert->author_curicolumn = $request->author_curricolumn; 
+    
+        if($insert){
+            return redirect()->back()->with('message_success', 'Update success!');
+        }else{
+            return redirect()->back()->with('message_error', 'Update not success!');
+        }
+    }
 }

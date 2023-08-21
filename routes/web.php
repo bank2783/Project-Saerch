@@ -57,6 +57,7 @@ Route::post('/admin/table/advisor/update',[AdvisorController::class,'Update_advi
 
 Route::get('/admin/table/author',[AuthorController::class,'showAuthor'])->name('showAuthor');
 Route::post('admin/table/author/update',[AuthorController::class,'authorUpdate'])->name('author_update');
+Route::post('/admin/table/author/create',[AuthorController::class,'authorInsert'])->name('authorInsert');
 
 
 
