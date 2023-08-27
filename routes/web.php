@@ -6,6 +6,9 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdvisorController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CurricolumnController;
+use App\Http\Controllers\ProjectAuthorController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,8 +61,26 @@ Route::post('/admin/table/advisor/update',[AdvisorController::class,'Update_advi
 Route::get('/admin/table/author',[AuthorController::class,'showAuthor'])->name('showAuthor');
 Route::post('admin/table/author/update',[AuthorController::class,'authorUpdate'])->name('author_update');
 Route::post('/admin/table/author/create',[AuthorController::class,'authorInsert'])->name('authorInsert');
+Route::post('/admin/table/author/delete',[AuthorController::class,'authorDelete'])->name('authorDelete');
+
+Route::get('/admin/table/project_author',[ProjectAuthorController::class,'showProjectAuthor'])->name('show_project_author');
+Route::post('admin/table/porject_author/create',[ProjectAuthorController::class,'create'])->name('creat_project_author');
+Route::post('admin/table/porject_author/update',[ProjectAuthorController::class,'update'])->name('update_project_author');
+Route::post('admin/table/porject_author/delete',[ProjectAuthorController::class,'delete'])->name('delete_project_author');
 
 
+Route::get('admin/table/curricolumn',[CurricolumnController::class,'showCurricolumn'])->name('show_curricolumn');
+Route::post('admin/table/curricolumn/create',[CurricolumnController::class,'create'])->name('create_curricolumn');
+Route::post('admin/table/curricolumn/update',[CurricolumnController::class,'update'])->name('update_curricolumn');
+Route::post('admin/table/curricolumn/delete',[CurricolumnController::class,'delete'])->name('delete_curricolumn');
+
+Route::get('admin/table/category',[CategoryController::class,'showCategory'])->name('show_category');
+Route::post('admin/table/category/create',[CategoryController::class,'create'])->name('create_category');
+Route::post('admin/table/category/update',[CategoryController::class,'update'])->name('update_category');
+Route::post('admin/table/category/delete',[CategoryController::class,'delete'])->name('delete_category');
+
+
+Route::get('admon/table/users',[UsersController::class,'showUsers'])->name('show_users');
 
 // Route::get('/', function () {
 //     return view('welcome');

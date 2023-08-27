@@ -84,38 +84,23 @@
                     <div class="modal-dialog">
                 <div class="modal-content">
                  <div class="modal-header">
-                     <h1 class="modal-title fs-5" id="exampleModalLabel">Author Create</h1>
+                     <h1 class="modal-title fs-5" id="exampleModalLabel">Project Author Create</h1>
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                      </div>
                      <div class="modal-body">
-                        <form action="{{route('authorInsert')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('creat_project_author')}}" method="POST" enctype="multipart/form-data">
                             @csrf
-
                             <label for="exampleInputPassword1" class="form-label mt-2 ">Author name</label>
-                            <input type="text" name="author_name"  class="form-control" required id="exampleInputPassword1">
+                            <input type="text" name="project_id"  class="form-control" required id="exampleInputPassword1">
 
                             <label for="exampleInputPassword1" class="form-label mt-2 ">Author Email</label>
-                            <input type="email" name="author_email"  class="form-control" required id="exampleInputPassword1">
+                            <input type="text" name="user_id"  class="form-control" required id="exampleInputPassword1">
 
-                            <label for="exampleInputPassword1" class="form-label mt-2 ">Author sid</label>
-                            <input type="text" name="author_sid"  class="form-control" required id="exampleInputPassword1">
-
-                            <label for="exampleInputPassword1" class="form-label mt-2 ">Author tel</label>
-                            <input type="text" name="author_tel"  class="form-control" required id="exampleInputPassword1">
-
-                            <label for="exampleInputPassword1" class="form-label mt-2 ">Author curricolumn</label>
-                            <select class="form-select" name="author_curricolumn_id" aria-label="Default select example">
-                                <option selected disabled >สาขา</option>
-                                @foreach ($curricolumn as $crl_row )
-
-                                    <option value="{{$crl_row->id}}">{{$crl_row->curricolumn_name}}</option>
-
-                                @endforeach
-
-                              </select>
-
-                            <label for="exampleInputPassword1" class="form-label mt-2 ">author gender</label>
-                            <input type="text" name="author_gender"  class="form-control" required id="exampleInputPassword1">
+                            <label class="form-label mt-3">status</label>
+                            <select name="status" class="form-select">
+                                <option value="on" >on</option>
+                                <option value="off" >off</option>
+                            </select>
 
                             <button type="submit" class="btn btn-primary mt-3">Submit</button>
                         </form>
@@ -150,12 +135,9 @@
         <thead>
             <tr>
 
-                <th>Author Name</th>
-                <th>Author sid</th>
-                <th>Author email</th>
-                <th>Author tel</th>
-                <th width="5%">Author gender</th>
-                <th width="20%">Author curricolumn</th>
+                <th>Project Author ID</th>
+                <th>USER ID</th>
+
                 <th width="5%">Update</th>
                 <th width="5%">Delete</th>
 
@@ -163,14 +145,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($author as $row )
+            @foreach ($project_author as $row )
             <tr>
-                <td>{{$row->author_name}}</td>
-                <td>{{$row->author_sid}}</td>
-                <td>{{$row->author_email}}</td>
-                <td>{{$row->author_tel}}</td>
-                <td>{{$row->author_gender}}</td>
-                <td>{{$row->curricolumn -> curricolumn_name}}</td>
+                <td>{{$row -> project_id}}</td>
+                <td>{{$row -> user_id}}</td>
+
                 <td>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#updateModal{{$row->id}}">
@@ -182,40 +161,23 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="updateModalLabel{{$row->id}}">Author Update</h1>
+                                    <h1 class="modal-title fs-5" id="updateModalLabel{{$row->id}}">Project_Author Update</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <h3>Update</h3>
-                                    <form action="{{route('author_update')}}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('update_project_author')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" name="author_id" value="{{$row->id}}">
+                                        <input type="hidden" name="project_author_id" value="{{$row->id}}">
 
-                                        <label for="exampleInputPassword1" class="form-label mt-2 ">Author name</label>
-                                        <input type="text" name="author_name" value="{{$row->author_name}}" class="form-control" required id="exampleInputPassword1">
+                                        <label class="form-label mt-2 ">Project ID</label>
+                                        <input type="text" name="project_id" value="{{$row->project_id}}"  class="form-control" required >
 
-                                        <label for="exampleInputPassword1" class="form-label mt-2 ">Author Email</label>
-                                        <input type="email" name="author_email" value="{{$row->author_email}}" class="form-control" required id="exampleInputPassword1">
+                                        <label class="form-label mt-2 ">User ID</label>
+                                        <input type="text" name="user_id" value="{{$row->user_id}}" class="form-control" required >
 
-                                        <label for="exampleInputPassword1" class="form-label mt-2 ">Author sid</label>
-                                        <input type="text" name="author_sid" value="{{$row->author_sid}}" class="form-control" required id="exampleInputPassword1">
 
-                                        <label for="exampleInputPassword1" class="form-label mt-2 ">Author tel</label>
-                                        <input type="text" name="author_tel" value="{{$row->author_tel}}" class="form-control" required id="exampleInputPassword1">
 
-                                        <label for="exampleInputPassword1" class="form-label mt-2 ">Author curricolumn</label>
-                                        <select class="form-select" name="author_curricolumn" aria-label="Default select example">
-                                            <option selected value="{{$row->curricolumn->id}}">{{$row->curricolumn->curricolumn_name}}</option>
-                                            @foreach ($curricolumn as $crl_row )
-                                                @if($crl_row->id != $row->curricolumn -> id)
-                                                <option value="{{$crl_row->id}}">{{$crl_row->curricolumn_name}}</option>
-                                                @endif
-                                            @endforeach
-
-                                          </select>
-
-                                        <label for="exampleInputPassword1" class="form-label mt-2 ">author gender</label>
-                                        <input type="text" name="author_gender" value="{{$row->author_gender}}" class="form-control" required id="exampleInputPassword1">
 
                                         <button type="submit" class="btn btn-primary mt-3">Submit</button>
                                     </form>
@@ -247,9 +209,9 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <form action="{{route('authorDelete')}}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('delete_project_author')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" name="author_id" value="{{$row->id}}">
+                                        <input type="hidden" name="project_author_id" value="{{$row->id}}">
                                         <button type="submit" class="btn btn-danger">ลบ </button>
                                     </form>
                                 </div>

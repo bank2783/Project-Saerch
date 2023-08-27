@@ -418,7 +418,7 @@
                                 </div>
                             </div>
                         </a>
-                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <a href="{{route('showAuthor')}}" class="col-xl-3 col-lg-3 col-sm-6 nav-link">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="row d-flex align-items-center">
@@ -431,8 +431,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                        </a>
+                        <a href="{{route('show_project_author')}}" class="col-xl-3 col-lg-3 col-sm-6 nav-link">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="row d-flex align-items-center">
@@ -445,8 +445,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                        </a>
+                        <a href="{{route('show_curricolumn')}}" class="col-xl-3 col-lg-3 col-sm-6 nav-link">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="row d-flex align-items-center">
@@ -459,8 +459,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                        </a>
+                        <a href="{{route('show_category')}}" class="col-xl-3 col-lg-3 col-sm-6 nav-link">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="row d-flex align-items-center">
@@ -473,7 +473,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                         <div class="col-xl-3 col-lg-3 col-sm-6">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
