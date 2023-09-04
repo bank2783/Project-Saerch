@@ -176,7 +176,7 @@
 
                 <div class="mb-3 col-6">
                     <label for="exampleInputPassword1" class="form-label">ชื่อผู้อัพโหลด</label>
-                    <input type="text" name="author_name" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->name}}">
+                    <input type="text" name="author_name" class="form-control" id="exampleInputPassword1" value="">
                 </div>
                 <div class="mb-3 col-3">
                     <label for="exampleInputPassword1" class="form-label">รหัสนักศึกษา</label>

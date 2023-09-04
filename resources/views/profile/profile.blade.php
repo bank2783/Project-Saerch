@@ -45,7 +45,7 @@
                               </svg>
                         </div>
                         <div class="col-12 mt-3 d-flex justify-content-center text-secondary">
-                            <span style="font-size:18px;">{{Auth::user()->name}}</span>
+                            <span style="font-size:18px;"></span>
                         </div>
                         <div class="col-12 text-start text-secondary mt-5" style="font-size:16px;">
                             <div class="row">

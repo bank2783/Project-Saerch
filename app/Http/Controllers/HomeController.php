@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Advisor;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -52,8 +53,9 @@ class HomeController extends Controller
         $project_id = $project_author_data -> project_id;
         $project_data = Projects::where('id','=',$project_id)->first();
 
-            $filePath = 'public/bird_mark,+Journal+manager,+153_สมพล+สุขเจริญพงษ์.pdf';
-            $fileSize = Storage::size($filePath);
+        $filePath = 'public/file/bird_mark,+Journal+manager,+153_สมพล+สุขเจริญพงษ์.pdf';
+        $fileSize = Storage::size($filePath);
+
             return view('profile.profile',compact('project_data','fileSize'));
 
 

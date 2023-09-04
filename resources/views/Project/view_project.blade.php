@@ -173,7 +173,7 @@
 
                                         ดาวน์โหลดไฟล์เล่มโครงงาน PDF
                                         (
-                                        @php
+                                            @php
                                             $fileSizeInMB = $fileSize / 1048576;
                                         if($fileSizeInMB >= 1){
                                             echo number_format($fileSizeInMB,2) . ' MB';

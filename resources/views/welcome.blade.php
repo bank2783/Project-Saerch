@@ -103,8 +103,11 @@
                     <td>{{$row -> Curricolumn -> curricolumn_name}}</td>
 
                     <td>{{$row -> Author -> author_name }}</td>
+                    @php
+                    $id_encrypt = Crypt::encrypt($row -> id);
+                    @endphp
                     <td>
-                        <a href="#" class="btn btn-primary">
+                        <a href="{{route('view_project',$id_encrypt)}}"" class="btn btn-primary">
                             <i class="bi bi-eye " style="color:#ffffff"></i>
                         </a>
 

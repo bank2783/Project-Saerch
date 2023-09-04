@@ -1,7 +1,8 @@
-var counter = 0;
+            var counter = 0;
                 function addInput() {
                     var inputContainer = document.getElementById('inputContainer');
                     var inputWrapper = document.createElement('div');
+                    inputWrapper.setAttribute('id','input-warpper'+counter)
                     let set_submit_btn = document.getElementById('btn-submit');
                     set_submit_btn.setAttribute('disabled','disabled');
                     inputWrapper.classList.add('input-wrapper');
@@ -9,22 +10,24 @@ var counter = 0;
 
                     var s_id = document.createElement('label');
                     s_id.setAttribute('class','form-label');
+                    s_id.setAttribute('id','sid-input-la'+counter);
                     s_id.textContent = "รหัสนักศึกษา";
                     inputWrapper.appendChild(s_id);
 
                     var sid_input = document.createElement('input');
                     sid_input.setAttribute('type', 'text');
                     sid_input.setAttribute('class', 'form-control mb-3 col-6');
-                    sid_input.setAttribute('id','sid_input');
+                    sid_input.setAttribute('id','sid-input-'+counter);
                     sid_input.setAttribute('name', 'sid_input_author[' + counter + ']');
                     inputWrapper.appendChild(sid_input);
 
                     let msgBox = document.createElement('div');
-                    msgBox.setAttribute('id','msgBox');
+                    msgBox.setAttribute('id','msgBox'+counter);
                     inputWrapper.appendChild(msgBox);
 
                     var btn_checker_user = document.createElement('span');
                     btn_checker_user.setAttribute('class','btn btn-primary col-6 text-white');
+                    btn_checker_user.setAttribute('id','btn-checker'+counter);
                     btn_checker_user.textContent = "ตรวจสอบ";
 
 
@@ -32,10 +35,13 @@ var counter = 0;
                     let msgResult; // ย้ายตัวแปร msgResult ไปด้านนอกเพื่อให้สามารถเก็บค่าของอิลิเมนต์ข้อความได้ทุกครั้งที่คลิก
 
                 btn_checker_user.onclick = function () {
-                var sid_input = document.getElementById('sid_input');
-                var sid_input_value = sid_input.value;
-                let msgBoxResult = document.getElementById('msgBox');
-                let set_submit_btn = document.getElementById('btn-submit');
+                var sid_input = document.getElementById('sid-input-'+counter);
+                if (sid_input) {
+                    var sid_input_value = sid_input.value;
+                    let msgBoxResult = document.getElementById('msgBox' + counter);
+                    let set_submit_btn = document.getElementById('btn-submit' + counter);
+            
+                    // ... ส่วนอื่น ๆ ของโค้ดของคุณ ...
 
                     fetch('api/user-data-for-checker')
                      .then(response => {
@@ -90,6 +96,13 @@ var counter = 0;
         .catch(error => {
             console.log('fetch API error:', error);
         });
+            
+                } else {
+                    console.error("ไม่พบอิลิเมนต์ที่มี ID 'sid-input-" + counter + "' ใน DOM.");
+                }
+               
+
+                    
 };
 
 
