@@ -9,7 +9,7 @@
         <!-- Fonts -->
 
         <link href="{{ asset('CSS\homeCss\view_project_css.css') }}" rel="stylesheet">
-
+        <link href="{{ asset('CSS\homeCss\style.css') }}" rel="stylesheet">
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -21,26 +21,18 @@
         <style>
             body {
                 /* font-family: 'Nunito', sans-serif; */
-                font-family: 'Mitr';font-size: 22px;
+                font-family: 'Mitr' , sans-serif;
+                background-color: #f6f7fc;
             }
         </style>
 
 
     </head>
+    <div class="container-fluid">
+        @include('layout.header')
+    </div>
     <body class="antialiased">
-        <div class="container">
-            @include('layout.header')
-
-
-        </div>
-        <div class="row">
-
-        </div>
-        <div class="container">
-
-
-
-        </div>
+        @include('layout.top_name')
         <div class="container mt-5">
             <div class="row ">
                 <div class="col-3">
@@ -71,120 +63,214 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    <div class="row border-start">
-                        <form class="col-12 row">
+                    <div class="container">
+                        <div class="row">
+                            <span class=" fs-2">อัพโหลดโครงงาน</span>
+
+                        </div>
+                        <div class="row mt-3 border-bottom border-primary border-1">
+
+                        </div>
+                        <div class="row mt-5">
+                            <span class=" fs-3" style="color:#07098f ">ชื่อโครงงาน</span>
+                        </div>
+
+
+
+                        <form class="row my-3" action="{{route('store_project')}}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            @csrf
+                            <div class=" col-6">
+                              <label for="exampleInputEmail1" class="form-label">ชื่อโครงงานภาษาไทย</label>
+                              <input type="text" name="project_name_th" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ภาษาไทย">
+                              <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
+                            </div>
                             <div class="mb-3 col-6">
-                                <label for="exampleInputEmail1" class="form-label">ชื่อโครงงานภาษาไทย</label>
-                                <input type="text" value="{{$project_data -> project_name_th}}" name="project_name_th" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ภาษาไทย">
-                                <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
-                              </div>
-                              <div class="mb-3 col-6">
-                                <label for="exampleInputPassword1" class="form-label">ชื่อโครงงานภาษาอังกฤษ</label>
-                                <input type="text" value="{{$project_data -> project_name_en}}" name="project_name_en" class="form-control" id="exampleInputPassword1" placeholder="ภาษาอังกฤษ">
-                                <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
-                              </div>
-                              <div class="mb-3">
-                                  <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาไทย</label>
-                                  <textarea type="text"  name="abstract_th" class="form-control" id="exampleInputPassword1">{{$project_data -> project_abstract_th}}</textarea>
+                              <label for="exampleInputPassword1" class="form-label">ชื่อโครงงานภาษาอังกฤษ</label>
+                              <input type="text" name="project_name_en" class="form-control" id="exampleInputPassword1" placeholder="ภาษาอังกฤษ">
+                              <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
+                            </div>
 
-                              </div>
-                              <div class="mb-3">
-                                  <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาอังกฤษ</label>
-                                  <textarea type="text" name="abstract_eng" class="form-control" id="exampleInputPassword1">{{$project_data -> project_abstract_en}}"</textarea>
 
-                              </div>
-                              <div class="mb-3 col-6">
-                                  <label for="exampleInputPassword1" class="form-label">Keyword TH</label>
-                                  <input type="text" name="keyword_th" value="{{$project_data -> project_keyword_th}}" class="form-control" id="exampleInputPassword1">
-                              </div>
-                              <div class="mb-3 col-6">
-                                  <label for="exampleInputPassword1" class="form-label">Keyword EN</label>
-                                  <input type="text" name="keyword_eng" value="{{$project_data -> project_keyword_en}}" class="form-control" id="exampleInputPassword1">
-                              </div>
+                            <div class="row mt-5">
+                                <span class=" fs-3" style="color:#07098f ">บทคัดย่อ</span>
+                            </div>
 
-                              <div class="mb-3 col-6">
-                                  <label for="exampleInputPassword1" class="form-label">Project file PDF</label>
-                                  <input type="file" name="project_file" class="form-control" id="exampleInputPassword1">
-                              </div>
 
-                              <div class="mb-3 col-3">
-                                  <label for="exampleInputPassword1" class="form-label">ประเภทของโครงงาน</label>
-                                  <select class="form-select" name="category" aria-label="Default select example">
-                                      <option selected value="{{$project_data -> Category -> id}}">{{$project_data -> Category -> category_name}}</option>
-                                      @foreach ($Category as $row )
-                                        @if ($row -> id != $project_data -> Category -> id)
-                                        <option value="{{$row -> id}}">{{$row->category_name}}</option>
-                                        @endif
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาไทย</label>
+                                <textarea type="text" name="abstract_th" class="form-control" id="exampleInputPassword1"></textarea>
+                            </div>
 
-                                      @endforeach
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาอังกฤษ</label>
+                                <textarea type="text" name="abstract_eng" class="form-control" id="exampleInputPassword1"></textarea>
+                            </div>
+
+                            <div class="row mt-5">
+                                <span class=" fs-3" style="color:#07098f ">คีย์เวิร์ด</span>
+                            </div>
+
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label">คีย์เวิร์ดภาษาไทย</label>
+                                <input type="text" name="keyword_th" class="form-control" id="exampleInputPassword1">
+                                <div id="emailHelp" class="form-text">ใส่ , เพื่อแยกคำคีย์เวิร์ด ตัวอย่างเช่น เว็บไซต์,ฐานข้อมูล,โปรแกรม</div>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label">คีย์เวิร์ดภาษาอังกฤษ</label>
+                                <input type="text" name="keyword_eng" class="form-control" id="exampleInputPassword1">
+                            </div>
+
+
+                            <div class="row mt-5">
+                                <span class=" fs-3" style="color:#07098f ">อาจารย์ที่ปรึกษา</span>
+                            </div>
+
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label">ชื่ออาจารย์ที่ปรึกษา</label>
+                                <select class="form-select" name="advisor_name" aria-label="Default select example">
+                                    <option selected>ชื่ออาจารย์ที่ปรึกษา...</option>
+                                    @foreach ($Advisor as  $row )
+                                    <option value="{{$row -> id}}">{{$row -> advisor_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">อีเมลล์อาจารย์ที่ปรึกษา</label>
+                                <input type="text" name="advisor_email" class="form-control" id="exampleInputPassword1" >
+                            </div>
+
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">เบอร์โทรอาจารย์ที่ปรึกษา</label>
+                                <input type="text" name="advisor_tel" class="form-control" id="exampleInputPassword1" >
+                            </div>
+
+
+
+
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">เพศ</label>
+                                <select class="form-select" name="author_gender" aria-label="Default select example">
+                                    <option selected>เลือกเพศ</option>
+                                    <option value="1">หญิง</option>
+                                    <option value="2">ชาย</option>
+                                    <option value="3">อื่น ๆ</option>
+                                </select>
+                            </div>
+
+
+                            <div class="row mt-5">
+                                <span class=" fs-3" style="color:#07098f ">รายละเอียดของโครงงาน</span>
+                            </div>
+
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">ประเภทของโครงงาน</label>
+                                <select class="form-select" name="category" aria-label="Default select example">
+                                    <option selected>เลือกประเภทของโครงาน</option>
+                                    @foreach ($category as $row )
+                                     <option value="{{$row -> id}}">{{$row->category_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">หลักสูตร</label>
+                                <select class="form-select" name="curricolumn" aria-label="Default select example">
+                                    <option selected>เลือกหลักสูตร</option>
+                                    @foreach ($curricolumn as $row )
+                                    <option value="{{$row -> id}}">{{$row->curricolumn_name}}</option>
+                                    @endforeach
                                   </select>
-                              </div>
-                              <div class="mb-3 col-3">
-                                  <label for="exampleInputPassword1" class="form-label">หลักสูตร</label>
-                                  <select class="form-select" name="curricolumn" aria-label="Default select example">
-                                      <option selected value="{{$project_data -> Curricolumn -> id}}">{{$project_data -> Curricolumn -> curricolumn_name}}</option>
-                                      @foreach ($Curricolumn as $row )
-                                        @if ($row-> id != $project_data -> Curricolumn -> id)
-                                        <option value="{{$row -> id}}">{{$row->curricolumn_name}}</option>
-                                        @endif
+                            </div>
 
-                                      @endforeach
-                                    </select>
-                              </div>
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">Project file PDF</label>
+                                <input type="file" name="project_file" class="form-control" id="exampleInputPassword1">
+                            </div>
 
-                              <div class="mb-3 col-6">
-                                  <label for="exampleInputPassword1" class="form-label">ชื่ออาจารย์ที่ปรึกษา</label>
-                                  <select class="form-select" name="curricolumn" aria-label="Default select example">
-                                  <option selected value="{{$project_data -> Advisor -> id}}">{{$project_data -> Advisor -> advisor_name}}</option>
-                                  @foreach ($Advisor as $row )
-                                    @if ($row->id != $project_data -> Advisor -> id)
-                                    <option value="{{$row -> id}}">{{$row->advisor_name}}</option>
+
+                            <div class="row mt-5">
+                                <span class=" fs-3" style="color:#07098f ">ผู้อัพโหลด</span>
+                            </div>
+
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label">ชื่อผู้อัพโหลด</label>
+                                <input type="text" name="author_name" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->name}}">
+                            </div>
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">รหัสนักศึกษา</label>
+                                <input type="text" name="author_sid" class="form-control" id="exampleInputPassword1">
+                            </div>
+
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">เบอร์โทร</label>
+                                <input type="text" name="author_tel" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">Email</label>
+                                <input type="email" name="author_email" class="form-control" id="exampleInputPassword1">
+                            </div>
+
+                            <div class="row mt-5">
+                                <span class=" fs-3" style="color:#07098f ">เพิ่มชื่อสมาชิก</span>
+                            </div>
+
+
+
+                            <div class="mb-3 col-12">
+                            <label>กดปุ่มเพิ่มเพื่อเพิ่มช่องกรอกข้อมูลสำหรับใส่ชื่อสมาชิกในโครงาน</label>
+                            </div>
+
+                            <div class="mb-3 col-6">
+                                <span class="btn btn-success bg-success addInput-btn mb-3" onclick="addInput()">เพิ่มช่องกรอกข้อมูล</span>
+                            <div id="inputContainer">
+
+                            </div>
+                            </div>
+                            <style>
+                                .input-wrapper {
+                                    width: fit-content;
+                                }
+                            </style>
+
+
+
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-3" >
+                                        <button id="btn-submit" type="submit" class="btn mt-3 btn-primary" style="width: 100%;">อัพโหลด</button>
+                                    </div>
+                                </div>
+
+
+                          </form>
+                            </div>
+
+
+                    {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+                        @if (Route::has('login'))
+                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                @auth
+                                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                                @else
+                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                                     @endif
-                                  @endforeach
-                                  </select>
-                              </div>
-                              <div class="mb-3 col-3">
-                                  <label for="exampleInputPassword1" class="form-label">Email</label>
-                                  <input type="text" value="{{$project_data -> Advisor -> advisor_email}}" name="advisor_email" class="form-control" id="exampleInputPassword1" >
-                              </div>
-                              <div class="mb-3 col-3">
-                                  <label for="exampleInputPassword1" class="form-label">เบอร์โทร</label>
-                                  <input type="text" value="{{$project_data -> Advisor -> advisor_tel}}" name="advisor_tel" class="form-control" id="exampleInputPassword1" >
-                              </div>
-                              <div class="mb-3 col-6">
-                                  <label for="exampleInputPassword1" class="form-label">ชื่อผู้อัพโหลด</label>
-                                  <input type="text" name="author_name" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->name}}">
-                              </div>
-                              <div class="mb-3 col-3">
-                                  <label for="exampleInputPassword1" class="form-label">รหัสนักศึกษา</label>
-                                  <input type="text" value="{{$project_data -> Author -> author_sid}}" name="author_sid" class="form-control" id="exampleInputPassword1">
-                              </div>
-                              <div class="mb-3 col-3">
-                                  <label for="exampleInputPassword1" class="form-label">เพศ</label>
-                                  <select class="form-select" name="author_gender" aria-label="Default select example">
-                                      <option selected>{{$project_data -> Author -> author_gender}}</option>
-                                      <option value="หญิง">หญิง</option>
-                                      <option value="ชาย">ชาย</option>
-                                      <option value="อื่น ๆ">อื่น ๆ</option>
-                                  </select>
-                              </div>
+                                @endauth
+                            </div>
+                        @endif
 
-                              <div class="mb-3 col-6">
-                                  <label for="exampleInputPassword1" class="form-label">เบอร์โทร</label>
-                                  <input type="text" value="{{$project_data -> Author -> author_tel}}" name="author_tel" class="form-control" id="exampleInputPassword1">
-                              </div>
-                              <div class="mb-3 col-6">
-                                  <label for="exampleInputPassword1" class="form-label">Email</label>
-                                  <input type="email" value="{{$project_data -> Author -> author_tel}}" name="author_email" class="form-control" id="exampleInputPassword1">
-                              </div>
 
-                                  <div class="row d-flex justify-content-center">
-                                      <div class="col-3">
-                                          <button type="submit" class="btn btn-primary mt-3" style="width: 100%">อัพโหลด</button>
-                                      </div>
 
-                                  </div>
-                        </form>
+
+
+
+
+
+                            </div> --}}
+                        </div>
                     </div>
                 </div>
 
@@ -193,7 +279,7 @@
         </div>
 
 
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -215,7 +301,7 @@
 
 
 
-                </div>
+                </div> --}}
             </div>
         </div>
     </body>

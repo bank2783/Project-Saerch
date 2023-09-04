@@ -42,28 +42,7 @@
     </head>
     <body class="antialiased">
 
-            <div class="row">
-                <div class="col top-card">
-                    <div class="container">
-                        <div class="row fs-2" style="margin-top:15px;">
-                            <div class="col">
-                                <span class="text-white">CIT Project Database</span>
-                            </div>
-                        </div>
-                        <div class="row fs-5">
-                            <div class="col">
-                                <span class="text-white">คณะวิทยาศาสตร์และเทคโนโลยี</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <span class="text-white">มหาวิทยาลัยราชภัฎนครสวรรค์</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @include('layout.top_name')
 
         <div class="container container-lerg" style="margin-top:50px;">
             <div class="row bg-white rounded-2 shadow-sm">
@@ -144,7 +123,7 @@
 
         </div>
 
-        <div class="container mt-5 container-mobile">
+        {{-- <div class="container mt-5 container-mobile">
 
             <div class="row d-flex justify-content-center">
                 <div class="row col-lg-4">
@@ -261,7 +240,7 @@
 
 
 
-        </div>
+        </div> --}}
 
 
 

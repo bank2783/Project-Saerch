@@ -47,6 +47,7 @@ Route::get('/profile-edit-my-project/{id}',[HomeController::class,'editProject']
 Route::get('/admin',[AdminController::class,'index'])->name('admin_index');
 Route::get('/admin/project-list',[AdminController::class,'Projectlist'])->name('admin_view_project_list');
 Route::post('/admin/project-list',[AdminController::class,'ProjectlistSearchPost'])->name('Project_list_search_post');
+// Route::get('/admin/project-list/create',[AdminController::class,'ProjectlistSearchPost'])->name('Project_list_search_post');
 
 
 Route::get('/admin/project-edit-by-id/{id}',[AdminController::class,'ProjectEditListById'])->name('admin_view_edit-by_id');

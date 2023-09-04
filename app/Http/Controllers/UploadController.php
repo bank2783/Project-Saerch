@@ -147,27 +147,27 @@ class UploadController extends Controller
         'status' => 'on'
     ]);
 
-    if($res -> input('sid_input_author')){
-        $sid_author = $res -> input('sid_input_author');
+    // if($res -> input('sid_input_author')){
+    //     $sid_author = $res -> input('sid_input_author');
 
-        $user_ids = collect();
+    //     $user_ids = collect();
 
-        foreach($sid_author as $sid_author_value){
-          $user = User::where('email','=',$sid_author_value)->first();
-             if($user) {
-                 $user_ids -> puch($user->id);
-            }
-        }
+    //     foreach($sid_author as $sid_author_value){
+    //       $user = User::where('email','=',$sid_author_value)->first();
+    //          if($user) {
+    //              $user_ids -> puch($user->id);
+    //         }
+    //     }
 
-        foreach($user_ids as $user_id_value){
-            $project_author_user_id = Project_author::create([
-                'project_id' => $projects_insert->id,
-                'user_id' => $user_id_value
-            ]);
+    //     foreach($user_ids as $user_id_value){
+    //         $project_author_user_id = Project_author::create([
+    //             'project_id' => $projects_insert->id,
+    //             'user_id' => $user_id_value
+    //         ]);
 
-        }
+    //     }
 
-    }
+    // }
 
 
 

@@ -2,7 +2,6 @@ var counter = 0;
                 function addInput() {
                     var inputContainer = document.getElementById('inputContainer');
                     var inputWrapper = document.createElement('div');
-                    inputWrapper.setAttribute('id','input_wrapper'+counter)
                     let set_submit_btn = document.getElementById('btn-submit');
                     set_submit_btn.setAttribute('disabled','disabled');
                     inputWrapper.classList.add('input-wrapper');
@@ -16,26 +15,26 @@ var counter = 0;
                     var sid_input = document.createElement('input');
                     sid_input.setAttribute('type', 'text');
                     sid_input.setAttribute('class', 'form-control mb-3 col-6');
-                    sid_input.setAttribute('id','sid_input'+counter);
+                    sid_input.setAttribute('id','sid_input');
                     sid_input.setAttribute('name', 'sid_input_author[' + counter + ']');
                     inputWrapper.appendChild(sid_input);
 
                     let msgBox = document.createElement('div');
-                    msgBox.setAttribute('id','msgBox'+counter);
-                    msgBox.setAttribute('name','msgBox'+counter);
+                    msgBox.setAttribute('id','msgBox');
                     inputWrapper.appendChild(msgBox);
 
                     var btn_checker_user = document.createElement('span');
                     btn_checker_user.setAttribute('class','btn btn-primary col-6 text-white');
-                    btn_checker_user.setAttribute('id','btn_checker_user'+counter);
                     btn_checker_user.textContent = "ตรวจสอบ";
+
+
 
                     let msgResult; // ย้ายตัวแปร msgResult ไปด้านนอกเพื่อให้สามารถเก็บค่าของอิลิเมนต์ข้อความได้ทุกครั้งที่คลิก
 
                 btn_checker_user.onclick = function () {
-                // var sid_input_byId = document.getElementById('sid_input'+counter);
+                var sid_input = document.getElementById('sid_input');
                 var sid_input_value = sid_input.value;
-                let msgBoxResult = document.getElementById('msgBox'+counter);
+                let msgBoxResult = document.getElementById('msgBox');
                 let set_submit_btn = document.getElementById('btn-submit');
 
                     fetch('api/user-data-for-checker')
@@ -55,7 +54,6 @@ var counter = 0;
             }
 
             msgResult = document.createElement('p');
-            msgResult.setAttribute('id','msgResult'+counter);
 
             const foundData = s_id_data.find(item => item.email === sid_input_value);
             console.log(s_id_data);
@@ -92,8 +90,15 @@ var counter = 0;
         .catch(error => {
             console.log('fetch API error:', error);
         });
-}
-    inputWrapper.appendChild(btn_checker_user);
+};
+
+
+
+
+                    inputWrapper.appendChild(btn_checker_user);
+
+
+
 
                     var deleteButton = document.createElement('span');
                     deleteButton.setAttribute('class','btn btn-danger ms-2')
@@ -109,4 +114,4 @@ var counter = 0;
 
                     inputContainer.appendChild(inputWrapper);
                     counter++;
-        }
+                    }

@@ -27,7 +27,7 @@ class HomeController extends Controller
         // } else {
         //     $data['name'] = 'Not Login';
         // }
-        $project_data = Projects::all();
+        $project_data = Projects::where('status','=','on')->get();
 
 
         return view('welcome',compact('project_data'));
@@ -62,10 +62,10 @@ class HomeController extends Controller
     public function editProject($id){
         $id_decrypt = Crypt::decrypt($id);
         $project_data = Projects::where('id','=',$id_decrypt)->first();
-        $Category = Category::all();
-        $Curricolumn = Curricolumn::all();
+        $category = Category::all();
+        $curricolumn = Curricolumn::all();
         $Advisor = Advisor::all();
-        return view('profile.profile_edit',compact('project_data','Category','Curricolumn','Advisor'));
+        return view('profile.profile_edit',compact('project_data','category','curricolumn','Advisor'));
     }
 
     public function homeSearch(Request $request){

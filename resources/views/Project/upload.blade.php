@@ -7,6 +7,7 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
+        <link href="{{ asset('CSS\homeCss\style.css') }}" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Mitr' rel='stylesheet'>
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -29,8 +30,9 @@
     <div class="container-fluid">
         @include('layout.header')
     </div>
-    <body class="antialiased">
 
+    <body class="antialiased">
+        @include('layout.top_name')
         @if($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -40,8 +42,6 @@
         </ul>
     </div>
 @endif
-
-
 
         <div class="container mt-5">
             <div class="row">
