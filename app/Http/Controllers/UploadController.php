@@ -147,6 +147,23 @@ class UploadController extends Controller
         'status' => 'on'
     ]);
 
+
+    if($res -> input('sid_input_author')){
+        $project_author = Project_author::pluck('user_id')->get();
+        $sid_array = $res->input('sid_input_author');
+        foreach($sid_array as $index => $sid_one){
+            $user_id = User::where('email','=',$sid_one.'@local')->first();
+            if(in_array($user_id,$project_author)){
+                return redirect()->back()->with('message_error', 'รหัสนักศึกษาที่เพิ่มมีโครงงานแล้ว');
+            }else{
+                $add_project_author = Project_author::create([
+                    'project_id' => $projects_insert->id,
+                    'user_id' => $user_id,
+                    'status' => 'on'
+                ]);
+            }
+        }
+    }
     // if($res -> input('sid_input_author')){
     //     $sid_author = $res -> input('sid_input_author');
 
@@ -171,7 +188,7 @@ class UploadController extends Controller
 
 
 
-    return redirect()->back();
+    return redirect()->back()->with('message_success', 'อัปโหลดโครงงานสำเร็จ!');
 
     }
 }

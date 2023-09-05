@@ -128,18 +128,6 @@
 
 
 
-
-                <div class="mb-3 col-3">
-                    <label for="exampleInputPassword1" class="form-label">เพศ</label>
-                    <select class="form-select" name="author_gender" aria-label="Default select example">
-                        <option selected>เลือกเพศ</option>
-                        <option value="1">หญิง</option>
-                        <option value="2">ชาย</option>
-                        <option value="3">อื่น ๆ</option>
-                    </select>
-                </div>
-
-
                 <div class="row mt-5">
                     <span class=" fs-3" style="color:#07098f ">รายละเอียดของโครงงาน</span>
                 </div>
@@ -190,6 +178,15 @@
                 <div class="mb-3 col-3">
                     <label for="exampleInputPassword1" class="form-label">Email</label>
                     <input type="email" name="author_email" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 col-3">
+                    <label for="exampleInputPassword1" class="form-label">เพศ</label>
+                    <select class="form-select" name="author_gender" aria-label="Default select example">
+                        <option selected>เลือกเพศ</option>
+                        <option value="1">หญิง</option>
+                        <option value="2">ชาย</option>
+                        <option value="3">อื่น ๆ</option>
+                    </select>
                 </div>
 
                 <div class="row mt-5">
