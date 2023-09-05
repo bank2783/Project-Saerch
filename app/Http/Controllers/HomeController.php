@@ -38,7 +38,7 @@ class HomeController extends Controller
         $id_decrypt = Crypt::decrypt($id);
         $project_data = Projects::where('id','=',$id_decrypt)->first();
         // dd($project_data -> project_bookfile);
-        $filePath = 'public/bird_mark,+Journal+manager,+153_สมพล+สุขเจริญพงษ์.pdf';
+        $filePath = 'pulic/file/project/bird_mark,+Journal+manager,+153_สมพล+สุขเจริญพงษ์.pdf';
         $fileSize = Storage::size($filePath);
 
         return view('Project.view_project',compact('project_data','fileSize'));
@@ -56,7 +56,7 @@ class HomeController extends Controller
         $filePath = 'public/file/bird_mark,+Journal+manager,+153_สมพล+สุขเจริญพงษ์.pdf';
         $fileSize = Storage::size($filePath);
 
-            return view('profile.profile',compact('project_data','fileSize'));
+        return view('profile.profile',compact('project_data','fileSize'));
 
 
     }

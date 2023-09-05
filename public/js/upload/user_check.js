@@ -29,7 +29,7 @@
                     btn_checker_user.setAttribute('class','btn btn-primary col-6 text-white');
                     btn_checker_user.setAttribute('id','btn-checker'+counter);
                     btn_checker_user.textContent = "ตรวจสอบ";
-
+                    
 
 
                     let msgResult; // ย้ายตัวแปร msgResult ไปด้านนอกเพื่อให้สามารถเก็บค่าของอิลิเมนต์ข้อความได้ทุกครั้งที่คลิก
