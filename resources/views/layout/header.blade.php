@@ -28,13 +28,7 @@
           </li> --}}
         </ul>
 
-        @if(Auth::check())
 
-        <ul class="navbar-nav">
-          <li class="nav-item text-secondary register"><a href="" class="logout-btn nav-link btn btn-light border border-secondary">Logout</a></li>
-
-      </ul>
-        @else
 
 
         @if (Auth::check())
