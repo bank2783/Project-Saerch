@@ -10,7 +10,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">upload</a>
+            <a class="nav-link active" href="{{route('show.upload.form')}}">upload</a>
           </li>
           {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,16 +36,20 @@
       </ul>
         @else
 
+
+        @if (Auth::check())
         <ul class="navbar-nav me-3">
-
-          <li class="nav-item text-secondary login"><a href="{{route('signin')}}" class="nav-link nav-link btn btn-light border border-secondary">Login</a></li>
-
-      </ul>
-      @endif
+            <li class="nav-item"><a href="{{route('signout')}}" class="btn btn-light border">ออกจากระบบ</a></li>
+        </ul>
+        @else
+        <ul class="navbar-nav">
+            <li class="nav-item"><a href="{{route('signin')}}" class="btn btn-light border">เข้าสู่ระบบ</a></li>
+        </ul>
+        @endif
 
       </div>
     </div>
   </nav>
   <style>
-    
+
   </style>

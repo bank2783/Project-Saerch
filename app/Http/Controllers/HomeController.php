@@ -28,7 +28,7 @@ class HomeController extends Controller
         // } else {
         //     $data['name'] = 'Not Login';
         // }
-        $project_data = Projects::where('status','=','on')->get();
+        $project_data = Projects::where('status','=','on')->paginate(8);
 
 
         return view('welcome',compact('project_data'));
@@ -38,7 +38,7 @@ class HomeController extends Controller
         $id_decrypt = Crypt::decrypt($id);
         $project_data = Projects::where('id','=',$id_decrypt)->first();
         // dd($project_data -> project_bookfile);
-        $filePath = 'pulic/file/project/bird_mark,+Journal+manager,+153_สมพล+สุขเจริญพงษ์.pdf';
+        $filePath = $project_data -> project_bookfile;
         $fileSize = Storage::size($filePath);
 
         return view('Project.view_project',compact('project_data','fileSize'));
@@ -53,7 +53,7 @@ class HomeController extends Controller
         $project_id = $project_author_data -> project_id;
         $project_data = Projects::where('id','=',$project_id)->first();
 
-        $filePath = 'public/file/bird_mark,+Journal+manager,+153_สมพล+สุขเจริญพงษ์.pdf';
+        $filePath = 'public\bird_mark,+Journal+manager,+153_สมพล+สุขเจริญพงษ์.pdf';
         $fileSize = Storage::size($filePath);
 
         return view('profile.profile',compact('project_data','fileSize'));

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
+use PDF;
 use App\Models\Projects;
 use App\Models\Project_author;
 use App\Models\Category;
@@ -150,6 +151,17 @@ class AdminController extends Controller
             'user_id' => Auth::user()->id,
             'status' => 'on'
         ]);
+    }
+
+    public function Download($id){
+        $project_data = Projects::find($id)->first();
+
+        $file_path = $project_data -> project_bookfile;
+        $file_name = $project_data -> project_name_th;
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return Storage::download($file_path);
     }
 
 

@@ -106,7 +106,7 @@
                     <span class=" fs-3" style="color:#07098f ">อาจารย์ที่ปรึกษา</span>
                 </div>
 
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-6 col-xl-3">
                     <label for="exampleInputPassword1" class="form-label">ชื่ออาจารย์ที่ปรึกษา</label>
                     <select class="form-select" name="advisor_name" aria-label="Default select example">
                         <option selected>ชื่ออาจารย์ที่ปรึกษา...</option>
@@ -116,17 +116,15 @@
                     </select>
                 </div>
 
-                <div class="mb-3 col-3">
+                <div class="mb-3 col-6 col-xl-3">
                     <label for="exampleInputPassword1" class="form-label">อีเมลล์อาจารย์ที่ปรึกษา</label>
                     <input type="text" name="advisor_email" class="form-control" id="exampleInputPassword1" >
                 </div>
 
-                <div class="mb-3 col-3">
+                <div class="mb-3 col-6 col-xl-3">
                     <label for="exampleInputPassword1" class="form-label">เบอร์โทรอาจารย์ที่ปรึกษา</label>
                     <input type="text" name="advisor_tel" class="form-control" id="exampleInputPassword1" >
                 </div>
-
-
 
                 <div class="row mt-5">
                     <span class=" fs-3" style="color:#07098f ">รายละเอียดของโครงงาน</span>
@@ -152,7 +150,7 @@
                       </select>
                 </div>
 
-                <div class="mb-3 col-3">
+                <div class="mb-3 col-3 col-sm-4">
                     <label for="exampleInputPassword1" class="form-label">Project file PDF</label>
                     <input type="file" name="project_file" class="form-control" id="exampleInputPassword1">
                 </div>
@@ -162,24 +160,24 @@
                     <span class=" fs-3" style="color:#07098f ">ผู้อัพโหลด</span>
                 </div>
 
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-6 col-xl-3">
                     <label for="exampleInputPassword1" class="form-label">ชื่อผู้อัพโหลด</label>
-                    <input type="text" name="author_name" class="form-control" id="exampleInputPassword1" value="">
+                    <input type="text" name="author_name" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->name}}">
                 </div>
-                <div class="mb-3 col-3">
+                <div class="mb-3 col-6 col-xl-3">
                     <label for="exampleInputPassword1" class="form-label">รหัสนักศึกษา</label>
                     <input type="text" name="author_sid" class="form-control" id="exampleInputPassword1">
                 </div>
 
-                <div class="mb-3 col-3">
+                <div class="mb-3 col-6 col-xl-3">
                     <label for="exampleInputPassword1" class="form-label">เบอร์โทร</label>
                     <input type="text" name="author_tel" class="form-control" id="exampleInputPassword1">
                 </div>
-                <div class="mb-3 col-3">
+                <div class="mb-3 col-6 col-xl-3">
                     <label for="exampleInputPassword1" class="form-label">Email</label>
                     <input type="email" name="author_email" class="form-control" id="exampleInputPassword1">
                 </div>
-                <div class="mb-3 col-3">
+                <div class="mb-3 col-6 col-xl-3">
                     <label for="exampleInputPassword1" class="form-label">เพศ</label>
                     <select class="form-select" name="author_gender" aria-label="Default select example">
                         <option selected>เลือกเพศ</option>

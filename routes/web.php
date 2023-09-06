@@ -37,7 +37,7 @@ Route::post('/register',[AuthController::class,'RegisterPost'])->name('register_
 
 
 
-Route::get('/upload',[UploadController::class,'showUploadForm'])->name('show_upload_form');
+Route::get('/upload',[UploadController::class,'showUploadForm'])->name('show.upload.form')->middleware('CheckUserProject');
 Route::post('/upload',[UploadController::class,'storeProject'])->name('store_project');
 Route::get('/project/view/{id}',[HomeController::class,'viewProject'])->name('view_project');
 
@@ -82,6 +82,10 @@ Route::post('admin/table/category/delete',[CategoryController::class,'delete'])-
 
 
 Route::get('admon/table/users',[UsersController::class,'showUsers'])->name('show_users');
+
+
+////////////// Dowload PDF File ///////////////////
+Route::get('dowload/{id}',[AdminController::class,'Download'])->name('download.file');
 
 // Route::get('/', function () {
 //     return view('welcome');

@@ -27,6 +27,8 @@ class UploadController extends Controller
     }
 
     public function storeProject(Request $res){
+
+        // dd($res);
         $Validator = Validator::make($res -> all(),
         [
             'project_name_th' => ['required'],
@@ -99,7 +101,7 @@ class UploadController extends Controller
         $destination_path = 'file/project'; // เส้นทางไปยังโฟลเดอร์ที่ต้องการใน storage
         $project_file = $res->file('project_file');
         $project_name = $project_file->getClientOriginalName();
-        $project_file->store($destination_path);
+        $path = $res->file('project_file')->store('file/project');
     }
 
 
@@ -132,13 +134,13 @@ class UploadController extends Controller
         'project_abstract_en' => $res -> abstract_eng,
         'project_keyword_th' => $res -> keyword_th,
         'project_keyword_en' => $res -> keyword_eng,
-        'project_bookfile' => $project_name,
+        'project_bookfile' => $path,
         'status' => 'on',
         'advisor_id' => $advisor_insert -> id,
         'category_id' => $res -> category ,
         'user_id' => Auth::user()->id,
         'author_id' => $author_insert->id,
-        'curriculum_id' => $res -> curricolumn
+        'curricolumn_id' => $res -> curricolumn
     ]);
 
     $project_author_insert = Project_author::create([
@@ -149,43 +151,21 @@ class UploadController extends Controller
 
 
     if($res -> input('sid_input_author')){
-        $project_author = Project_author::pluck('user_id')->get();
+        $project_author = Project_author::pluck('user_id')->toArray();
         $sid_array = $res->input('sid_input_author');
-        foreach($sid_array as $index => $sid_one){
+        foreach($sid_array as $sid_one){
             $user_id = User::where('email','=',$sid_one.'@local')->first();
             if(in_array($user_id,$project_author)){
                 return redirect()->back()->with('message_error', 'รหัสนักศึกษาที่เพิ่มมีโครงงานแล้ว');
             }else{
                 $add_project_author = Project_author::create([
                     'project_id' => $projects_insert->id,
-                    'user_id' => $user_id,
+                    'user_id' => $user_id -> id,
                     'status' => 'on'
                 ]);
             }
         }
     }
-    // if($res -> input('sid_input_author')){
-    //     $sid_author = $res -> input('sid_input_author');
-
-    //     $user_ids = collect();
-
-    //     foreach($sid_author as $sid_author_value){
-    //       $user = User::where('email','=',$sid_author_value)->first();
-    //          if($user) {
-    //              $user_ids -> puch($user->id);
-    //         }
-    //     }
-
-    //     foreach($user_ids as $user_id_value){
-    //         $project_author_user_id = Project_author::create([
-    //             'project_id' => $projects_insert->id,
-    //             'user_id' => $user_id_value
-    //         ]);
-
-    //     }
-
-    // }
-
 
 
     return redirect()->back()->with('message_success', 'อัปโหลดโครงงานสำเร็จ!');

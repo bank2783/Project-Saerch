@@ -17,4 +17,5 @@ class Project_author extends Model
     public function Author(){
         return $this->belongsTo(Author::class);
     }
+
 }

@@ -9,6 +9,7 @@
         <!-- Fonts -->
 
         <link href="{{ asset('CSS\homeCss\view_project_css.css') }}" rel="stylesheet">
+        <link href="{{ asset('CSS\homeCss\style.css') }}" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Mitr' rel='stylesheet'>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -19,26 +20,27 @@
 
         <style>
             body {
-                font-family: 'Mitr';font-size: 22px;
+                font-family: 'Mitr' , sans-serif;
+                background-color: #f6f7fc;
             }
         </style>
-
-
     </head>
+
+    <div class="container-fluid p-0 m-0">
+    @include('layout.header')
+    </div>
+    @include('layout.top_name')
+
     <body class="antialiased">
-        <div class="container">
-            @include('layout.header')
 
-
-        </div>
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center" >
                 <div class="row col-12 col-lg-6 bg-primary project-box">
                         <div class="col-lg-12 text-center fs-1 fw-bold text-primary">
                             {{$project_data -> curricolumn -> curricolumn_description }}
                         </div>
-                        <div class="col-12 text-center fs-4  text-primary text-break">
+                        <div class="col-12 text-center fs-4 text-primary text-break">
                             {{$project_data -> project_name_th}}
                         </div>
 
@@ -63,14 +65,6 @@
                             </div>
 
 
-                            {{-- <div class="col-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase text-primary" viewBox="0 0 16 16">
-                                    <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
-                                  </svg>
-                            </div>
-                            <div class="col-7 text-primary" style="font-size:16px">
-                                {{$project_data -> curricolumn -> curricolumn_name }}
-                            </div> --}}
 
                         <div class="row">
                             <div class="col-12 col-lg-12 d-flex justify-content-start align-items-center">
@@ -113,14 +107,13 @@
                                 </svg>
                                 @php
                                     $keyword = $project_data -> project_keyword_th;
-
                                     $keywordArray = explode(",", $keyword);
                                 @endphp
                             <div class="col-10 mx-1 col-lg-6 text-white " style="font-size:16px;">
                                 <div class=" row d-flex justify-content-start" style="font-size:14px;">
                                     @foreach($keywordArray as $keyword)
                                             <span class="bg-primary mx-1 mt-1 rounded-2 pe-1 px-1" style="width: auto" >{{$keyword}}</span>
-                                 @endforeach
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -128,7 +121,30 @@
                     <div class=" mt-5 row justify-content-center d-flex" style="margin-left:1px;">
                         <div class="col-4 col-lg-4">
                             <div class="col-4 fs-5  text-white   text-center" style="width:100%">
-                                <span class="bg-primary pe-3 px-3 rounded-3" style="font-size:20px;">บทคัดย่อ</span>
+                                <!-- Button trigger modal -->
+                                        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    บทคัดย่อ
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-dark">
+            {{$project_data->project_abstract_th}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
                             </div>
                         </div>
                     </div>
@@ -167,13 +183,11 @@
                                           </svg>
                                     </span>
                                 </div>
-                                <div class="col-8 text-start">
+                                <a href="{{route('download.file',$project_data->id)}}"  class="col-8 text-start">
                                     <span class="" style="font-size:18px;">
-
-
                                         ดาวน์โหลดไฟล์เล่มโครงงาน PDF
                                         (
-                                            @php
+                                        @php
                                             $fileSizeInMB = $fileSize / 1048576;
                                         if($fileSizeInMB >= 1){
                                             echo number_format($fileSizeInMB,2) . ' MB';
@@ -184,7 +198,7 @@
                                         @endphp
                                         )
                                     </span>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -201,29 +215,7 @@
         </div>
 
 
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-
-
-
-
-
-
-
-                </div>
             </div>
         </div>
     </body>
