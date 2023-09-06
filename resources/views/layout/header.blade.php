@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light header-navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">CIT Project Database</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,16 +28,24 @@
           </li> --}}
         </ul>
 
+        @if(Auth::check())
+
+        <ul class="navbar-nav">
+          <li class="nav-item text-secondary register"><a href="" class="logout-btn nav-link btn btn-light border border-secondary">Logout</a></li>
+
+      </ul>
+        @else
+
         <ul class="navbar-nav me-3">
 
-            <li class="nav-item">Login</li>
+          <li class="nav-item text-secondary login"><a href="{{route('signin')}}" class="nav-link nav-link btn btn-light border border-secondary">Login</a></li>
 
-        </ul>
-        <ul class="navbar-nav">
-            <li class="nav-item">Register</li>
-
-        </ul>
+      </ul>
+      @endif
 
       </div>
     </div>
   </nav>
+  <style>
+    
+  </style>

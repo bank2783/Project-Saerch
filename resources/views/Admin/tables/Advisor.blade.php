@@ -432,6 +432,7 @@
               });
 
           </script>
+            
           @elseif (session()->has('message_error'))
           <script>
               swal("{{session()->get('message_error')}}","","error",{

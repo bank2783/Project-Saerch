@@ -26,6 +26,16 @@
                     btn_checker_user.setAttribute('id','btn-checker');
                     btn_checker_user.textContent = "ตรวจสอบ";
 
+
+
+
+
+
+                    inputWrapper.appendChild(btn_checker_user);
+
+
+
+
                     var deleteButton = document.createElement('span');
                     deleteButton.setAttribute('class','btn btn-danger ms-2')
                     inputWrapper.appendChild(deleteButton);
