@@ -28,9 +28,6 @@
           </li> --}}
         </ul>
 
-
-
-
         @if (Auth::check())
         <ul class="navbar-nav me-3">
             <li class="nav-item"><a href="{{route('signout')}}" class="btn btn-light border">ออกจากระบบ</a></li>

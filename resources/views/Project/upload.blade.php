@@ -116,15 +116,7 @@
                     </select>
                 </div>
 
-                <div class="mb-3 col-6 col-xl-3">
-                    <label for="exampleInputPassword1" class="form-label">อีเมลล์อาจารย์ที่ปรึกษา</label>
-                    <input type="text" name="advisor_email" class="form-control" id="exampleInputPassword1" >
-                </div>
 
-                <div class="mb-3 col-6 col-xl-3">
-                    <label for="exampleInputPassword1" class="form-label">เบอร์โทรอาจารย์ที่ปรึกษา</label>
-                    <input type="text" name="advisor_tel" class="form-control" id="exampleInputPassword1" >
-                </div>
 
                 <div class="row mt-5">
                     <span class=" fs-3" style="color:#07098f ">รายละเอียดของโครงงาน</span>

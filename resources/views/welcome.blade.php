@@ -52,31 +52,35 @@
                         <div class="col-3 d-flex align-items-center fs-4 mt-3">
                             ค้นหา
                         </div>
-                        <div class="col mt-3">
-                            <select class="form-select border" aria-label="Default select example">
-                                <option selected>เลือกสาขา...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+
+                        <div class="mt-3">
+                            <select name="curricolumn" class="form-select border" aria-label="Default select example">
+                                <option disabled selected>เลือกสาขา...</option>
+                                @foreach ($curricolumn as $row )
+                                    <option value="{{$row->id}}">{{$row->curricolumn_name}}</option>
+                                @endforeach
                               </select>
                         </div>
                         <div class="col mt-3">
                             <select class="form-select border" aria-label="Default select example">
-                                <option selected class="text-secondary">ประเภท...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option disabled selected class="text-secondary">ประเภท...</option>
+                                @foreach ($category as $row )
+                                    <option value="{{$row->id}}">{{$row->category_name}}</option>
+                                @endforeach
                               </select>
                         </div>
                         <div class="col-3 mt-3 d-flex align-items-center justify-content-end">
                             <div class="input-group d-flex">
 
                                 <input type="text" name="keyword_search" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ค้นหา">
-                                <span class="input-group-text" id="basic-addon1" style="background-color: #07098f">
+                                <button class="input-group-text" id="basic-addon1" style="background-color: #07098f">
                                     <i class="bi bi-search text-white"></i>
-                                </span>
+                                </button>
                             </div>
                         </div>
+                    </div>
+
+
 
 
                     </div>
@@ -124,8 +128,8 @@
             </div>
 
 
-
         </div>
+    </body>
 
         {{-- <div class="container mt-5 container-mobile">
 

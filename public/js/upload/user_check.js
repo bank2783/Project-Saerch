@@ -21,17 +21,7 @@
                     inputWrapper.appendChild(sid_input);
 
 
-                    var btn_checker_user = document.createElement('span');
-                    btn_checker_user.setAttribute('class','btn btn-primary col-6 text-white');
-                    btn_checker_user.setAttribute('id','btn-checker');
-                    btn_checker_user.textContent = "ตรวจสอบ";
 
-
-
-
-
-
-                    inputWrapper.appendChild(btn_checker_user);
 
 
 

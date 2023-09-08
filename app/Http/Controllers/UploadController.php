@@ -14,6 +14,7 @@ use App\Models\Author;
 use App\Models\Advisor;
 use App\Models\Project_author;
 use App\Models\User;
+use App\Models\stat_counter;
 
 
 class UploadController extends Controller
@@ -76,8 +77,7 @@ class UploadController extends Controller
 
             ///////////// advisor validate ////////////
             'advisor_name.required' => 'กรุณากรอกชื่ออาจารย์ที่ปรึกษา',
-            'advisor_tel.required' => 'กรุณากรอกเบอร์โทร',
-            'advisor_email.required' => 'กรุณากรอกอีเมลล์',
+
 
             ///////////// author validate ////////////
             'author_name.required' => 'กรุณากรอกชื่อ',
@@ -118,12 +118,13 @@ class UploadController extends Controller
 
 
 
-    $advisor_insert = Advisor::create([
-        'advisor_name' => $res -> advisor_name,
-        'advisor_tel' => $res -> advisor_tel,
-        'advisor_email' => $res -> advisor_email,
-        'status' => 'on'
-    ]);
+    // $advisor_insert = Advisor::create([
+    //     'advisor_name' => $res -> advisor_name,
+    //     'advisor_tel' => $res -> advisor_tel,
+    //     'advisor_email' => $res -> advisor_email,
+    //     'status' => 'on'
+    // ]);
+
 
     // dd($res -> curricolumn);
 
@@ -136,11 +137,12 @@ class UploadController extends Controller
         'project_keyword_en' => $res -> keyword_eng,
         'project_bookfile' => $path,
         'status' => 'on',
-        'advisor_id' => $advisor_insert -> id,
+        'advisor_id' => $res->advisor_name,
         'category_id' => $res -> category ,
         'user_id' => Auth::user()->id,
         'author_id' => $author_insert->id,
-        'curricolumn_id' => $res -> curricolumn
+        'curricolumn_id' => $res -> curricolumn,
+
     ]);
 
     $project_author_insert = Project_author::create([
@@ -166,6 +168,12 @@ class UploadController extends Controller
             }
         }
     }
+
+    $stat_counter = new stat_counter();
+    $stat_counter ->project_id = $projects_insert ->id;
+    $stat_counter ->views = 0;
+    $stat_counter->downloads = 0;
+    $stat_counter->save();
 
 
     return redirect()->back()->with('message_success', 'อัปโหลดโครงงานสำเร็จ!');

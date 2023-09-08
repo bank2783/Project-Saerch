@@ -58,7 +58,6 @@
                                 </div>
                             </div>
 
-
                         </div>
                     </div>
                 </div>
@@ -77,17 +76,18 @@
 
 
 
-                        <form class="row my-3" action="{{route('store_project')}}" method="POST" enctype="multipart/form-data">
+                        <form class="row my-3" action="{{route('admin_view_edit-by_id-post',$project_data->id)}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             @csrf
+                            <input type="hidden" name="project_id" value="{{$project_data->id}}">
                             <div class=" col-6">
                               <label for="exampleInputEmail1" class="form-label">ชื่อโครงงานภาษาไทย</label>
-                              <input type="text" name="project_name_th" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ภาษาไทย">
+                              <input type="text" name="project_name_th" value="{{$project_data->project_name_th}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ภาษาไทย">
                               <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
                             </div>
                             <div class="mb-3 col-6">
                               <label for="exampleInputPassword1" class="form-label">ชื่อโครงงานภาษาอังกฤษ</label>
-                              <input type="text" name="project_name_en" class="form-control" id="exampleInputPassword1" placeholder="ภาษาอังกฤษ">
+                              <input type="text" name="project_name_en" value="{{$project_data->project_name_en}}" class="form-control" id="exampleInputPassword1" placeholder="ภาษาอังกฤษ">
                               <div id="emailHelp" class="form-text">ใส่ชื่อโครงงานให้ถูกต้องห้ามใส่อักษรพิเศษ</div>
                             </div>
 
@@ -99,12 +99,12 @@
 
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาไทย</label>
-                                <textarea type="text" name="abstract_th" class="form-control" id="exampleInputPassword1"></textarea>
+                                <textarea type="text"  name="abstract_th" class="form-control" id="exampleInputPassword1">{{$project_data->project_abstract_th}}</textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">บทคัดย่อภาษาอังกฤษ</label>
-                                <textarea type="text" name="abstract_eng" class="form-control" id="exampleInputPassword1"></textarea>
+                                <textarea type="text" name="abstract_en" class="form-control" id="exampleInputPassword1">{{$project_data->project_abstract_en}}</textarea>
                             </div>
 
                             <div class="row mt-5">
@@ -113,12 +113,12 @@
 
                             <div class="mb-3 col-6">
                                 <label for="exampleInputPassword1" class="form-label">คีย์เวิร์ดภาษาไทย</label>
-                                <input type="text" name="keyword_th" class="form-control" id="exampleInputPassword1">
+                                <input type="text" name="keyword_th" value="{{$project_data->project_keyword_th}}" class="form-control" id="exampleInputPassword1">
                                 <div id="emailHelp" class="form-text">ใส่ , เพื่อแยกคำคีย์เวิร์ด ตัวอย่างเช่น เว็บไซต์,ฐานข้อมูล,โปรแกรม</div>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="exampleInputPassword1" class="form-label">คีย์เวิร์ดภาษาอังกฤษ</label>
-                                <input type="text" name="keyword_eng" class="form-control" id="exampleInputPassword1">
+                                <input type="text" name="keyword_eng" value="{{$project_data->project_keyword_en}}" class="form-control" id="exampleInputPassword1">
                             </div>
 
 
@@ -128,36 +128,28 @@
 
                             <div class="mb-3 col-6">
                                 <label for="exampleInputPassword1" class="form-label">ชื่ออาจารย์ที่ปรึกษา</label>
-                                <select class="form-select" name="advisor_name" aria-label="Default select example">
-                                    <option selected>ชื่ออาจารย์ที่ปรึกษา...</option>
+                                <select class="form-select"  name="advisor_name" aria-label="Default select example">
+                                    <option selected>{{$project_data->Advisor->advisor_name}}</option>
                                     @foreach ($Advisor as  $row )
+                                    @if ($row->id != $project_data->Advisor->id)
                                     <option value="{{$row -> id}}">{{$row -> advisor_name}}</option>
+                                    @endif
+
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="mb-3 col-3">
                                 <label for="exampleInputPassword1" class="form-label">อีเมลล์อาจารย์ที่ปรึกษา</label>
-                                <input type="text" name="advisor_email" class="form-control" id="exampleInputPassword1" >
+                                <input type="text" value="{{$project_data->Advisor->advisor_email}}" name="advisor_email" class="form-control" id="exampleInputPassword1" >
                             </div>
 
                             <div class="mb-3 col-3">
                                 <label for="exampleInputPassword1" class="form-label">เบอร์โทรอาจารย์ที่ปรึกษา</label>
-                                <input type="text" name="advisor_tel" class="form-control" id="exampleInputPassword1" >
+                                <input type="text" name="advisor_tel" value="{{$project_data->Advisor->advisor_tel}}" class="form-control" id="exampleInputPassword1" >
                             </div>
 
 
-
-
-                            <div class="mb-3 col-3">
-                                <label for="exampleInputPassword1" class="form-label">เพศ</label>
-                                <select class="form-select" name="author_gender" aria-label="Default select example">
-                                    <option selected>เลือกเพศ</option>
-                                    <option value="1">หญิง</option>
-                                    <option value="2">ชาย</option>
-                                    <option value="3">อื่น ๆ</option>
-                                </select>
-                            </div>
 
 
                             <div class="row mt-5">
@@ -167,9 +159,12 @@
                             <div class="mb-3 col-3">
                                 <label for="exampleInputPassword1" class="form-label">ประเภทของโครงงาน</label>
                                 <select class="form-select" name="category" aria-label="Default select example">
-                                    <option selected>เลือกประเภทของโครงาน</option>
+                                    <option value="{{$project_data->Category->id}}" selected>{{$project_data->Category->category_name}}</option>
                                     @foreach ($category as $row )
-                                     <option value="{{$row -> id}}">{{$row->category_name}}</option>
+                                    @if ($row->id != $project_data->Category->id)
+                                    <option value="{{$row -> id}}">{{$row->category_name}}</option>
+                                    @endif
+
                                     @endforeach
                                 </select>
                             </div>
@@ -177,9 +172,12 @@
                             <div class="mb-3 col-3">
                                 <label for="exampleInputPassword1" class="form-label">หลักสูตร</label>
                                 <select class="form-select" name="curricolumn" aria-label="Default select example">
-                                    <option selected>เลือกหลักสูตร</option>
+                                    <option value="{{$project_data->Curricolumn->id}}" selected>{{$project_data->Curricolumn->curricolumn_name}}</option>
                                     @foreach ($curricolumn as $row )
+                                    @if ($row->id != $project_data->Curricolumn->id)
                                     <option value="{{$row -> id}}">{{$row->curricolumn_name}}</option>
+                                    @endif
+
                                     @endforeach
                                   </select>
                             </div>
@@ -200,45 +198,29 @@
                             </div>
                             <div class="mb-3 col-3">
                                 <label for="exampleInputPassword1" class="form-label">รหัสนักศึกษา</label>
-                                <input type="text" name="author_sid" class="form-control" id="exampleInputPassword1">
+                                <input type="text" name="author_sid" value="{{$project_data->Author->author_name}}" class="form-control" id="exampleInputPassword1">
                             </div>
 
                             <div class="mb-3 col-3">
                                 <label for="exampleInputPassword1" class="form-label">เบอร์โทร</label>
-                                <input type="text" name="author_tel" class="form-control" id="exampleInputPassword1">
+                                <input type="text" name="author_tel" value="{{$project_data->Author->author_tel}}" class="form-control" id="exampleInputPassword1">
                             </div>
                             <div class="mb-3 col-3">
                                 <label for="exampleInputPassword1" class="form-label">Email</label>
-                                <input type="email" name="author_email" class="form-control" id="exampleInputPassword1">
+                                <input type="email" name="author_email" value="{{$project_data->Author->author_email}}" class="form-control" id="exampleInputPassword1">
                             </div>
-
-                            <div class="row mt-5">
-                                <span class=" fs-3" style="color:#07098f ">เพิ่มชื่อสมาชิก</span>
+                            <div class="mb-3 col-3">
+                                <label for="exampleInputPassword1" class="form-label">เพศ</label>
+                                <select class="form-select" name="author_gender" aria-label="Default select example">
+                                    <option selected>{{$project_data->Author->author_gender}}</option>
+                                    <option value="1">หญิง</option>
+                                    <option value="2">ชาย</option>
+                                    <option value="3">อื่น ๆ</option>
+                                </select>
                             </div>
-
-
-
-                            <div class="mb-3 col-12">
-                            <label>กดปุ่มเพิ่มเพื่อเพิ่มช่องกรอกข้อมูลสำหรับใส่ชื่อสมาชิกในโครงาน</label>
-                            </div>
-
-                            <div class="mb-3 col-6">
-                                <span class="btn btn-success bg-success addInput-btn mb-3" onclick="addInput()">เพิ่มช่องกรอกข้อมูล</span>
-                            <div id="inputContainer">
-
-                            </div>
-                            </div>
-                            <style>
-                                .input-wrapper {
-                                    width: fit-content;
-                                }
-                            </style>
-
-
-
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-3" >
-                                        <button id="btn-submit" type="submit" class="btn mt-3 btn-primary" style="width: 100%;">อัพโหลด</button>
+                                        <button id="btn-submit" type="submit" class="btn mt-3 btn-primary" style="width: 100%;">อัปโหลด</button>
                                     </div>
                                 </div>
 

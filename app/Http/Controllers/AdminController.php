@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\Curricolumn;
 use App\Models\Advisor;
 use App\Models\Author;
+use App\Models\stat_counter;
 use Illuminate\Support\Facades\Redis;
 
 class AdminController extends Controller
@@ -49,7 +50,7 @@ class AdminController extends Controller
             $project_name = $project_file->getClientOriginalName();
             $project_file->store($destination_path);
         }else{
-            $project_name = $project_data -> project_bookfile;
+            $project_path = $project_data -> project_bookfile;
 
         }
         $update = Projects::where('id',$project_id)->update([
@@ -58,8 +59,8 @@ class AdminController extends Controller
             'project_abstract_th' => $request -> abstract_th,
             'project_abstract_en' => $request -> abstract_en,
             'project_keyword_th' => $request -> keyword_th,
-            'project_keyword_en' => $request -> keyword_en,
-            'project_bookfile' => $project_name,
+            'project_keyword_en' => $request -> keyword_eng,
+            'project_bookfile' => $project_path,
             'category_id' => $request -> category,
             'curricolumn_id' => $request -> curricolumn,
 
@@ -158,9 +159,8 @@ class AdminController extends Controller
 
         $file_path = $project_data -> project_bookfile;
         $file_name = $project_data -> project_name_th;
-        $headers = array(
-            'Content-Type: application/pdf',
-        );
+
+        stat_counter::where('project_id','=',$id)->increment('downloads');
         return Storage::download($file_path);
     }
 

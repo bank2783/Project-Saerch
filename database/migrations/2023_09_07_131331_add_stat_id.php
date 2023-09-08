@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stat_counters', function (Blueprint $table) {
-            $table->id();
-            $table->integer('project_id');
-            $table->integer('views');
-            $table->integer('downloads');
-            $table->timestamps();
+        Schema::table('projects', function (Blueprint $table) {
+            $table->integer('stat_counter_id')->after('curricolumn_id');
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stat_counters');
+        Schema::table('projects', function (Blueprint $table) {
+            //
+        });
     }
 };
