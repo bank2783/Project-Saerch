@@ -12,7 +12,7 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -312,7 +312,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Project Upload</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">400</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span>{{$project_sum}}</span></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class=" fa-2x text-gray-300">
@@ -337,7 +337,7 @@
                                                 Visit
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                $215,000
+                                                <span>{{$stat_counter_views}}</span>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -363,7 +363,7 @@
                                                 DOWLOAD
                                             </div>
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                100
+                                                <span>{{$stat_counter_downloads}}</span>
                                             </div>
                                         </div>
 
@@ -389,10 +389,10 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span>{{$user_counter}}</span></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <i class="bi bi-person-fill fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>

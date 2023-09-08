@@ -14,13 +14,25 @@ use App\Models\Curricolumn;
 use App\Models\Advisor;
 use App\Models\Author;
 use App\Models\stat_counter;
+use App\Models\User;
 use Illuminate\Support\Facades\Redis;
+
 
 class AdminController extends Controller
 {
-    public function index(){
+    public function Adminindex(){
 
-     return view('Admin.index');
+        $project_data = Projects::where('status','=','on')->get();
+        $project_sum = $project_data->count();
+       
+        $stat_counter_views = stat_counter::sum('views');
+        $stat_counter_downloads = stat_counter::sum('downloads');
+        
+        $user_data = User::all();
+        $user_counter = $user_data->count();
+        
+        
+     return view('Admin.index',compact('project_sum','stat_counter_views','stat_counter_downloads','user_counter'));
     }
     public function ProjectList(){
         $Project_data = Projects::where('status','=','on')->get();

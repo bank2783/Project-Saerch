@@ -53,14 +53,19 @@ class HomeController extends Controller
         $user_id = Auth::user()->id;
 
         $project_author_data = Project_author::where('user_id','=',$user_id)->first();
-
-        $project_id = $project_author_data -> project_id;
+        if($project_author_data  ?? false){
+            $project_id = $project_author_data -> project_id;
         $project_data = Projects::where('id','=',$project_id)->first();
         $stat_counter = stat_counter::where('project_id','=',$project_data->id)->first();
         $filePath = $project_data -> project_bookfile;
         $fileSize = Storage::size($filePath);
 
         return view('profile.profile',compact('project_data','fileSize','stat_counter'));
+        }else{
+            return redirect('/');
+        }
+
+        
 
     }
 
@@ -74,6 +79,9 @@ class HomeController extends Controller
     }
 
     public function homeSearch(Request $request){
+        $category = Category::where('status','=','on')->get();
+        $curricolumn = Curricolumn::where('status','=','on')->get();
+        $project_data = Projects::where('status','=','on')->paginate(8);
         if($request->input('keyword_search')){
             $keyword = $request->input('keyword_search');
             $project_data = Projects::where('project_name_th','like','%'.$keyword.'%')->get();
@@ -104,8 +112,7 @@ class HomeController extends Controller
         }
 
 
-
-        return view('welcome',compact('project_data','keyword'));
+        return view('welcome',compact('project_data','category','curricolumn'));
     }
 
 

@@ -119,6 +119,7 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
+            
             return redirect()->intended('/');
         }else{
             return redirect()->back()->withErrors(['email' => 'Invalid credentials']);

@@ -52,8 +52,9 @@
                         <div class="col-3 d-flex align-items-center fs-4 mt-3">
                             ค้นหา
                         </div>
-
-                        <div class="mt-3">
+                        <form action="{{route('home_search')}}" class="col-1 input-group" method="POST" enctype="multipart/form-data">
+                        @csrf
+                            <div class="mt-3">
                             <select name="curricolumn" class="form-select border" aria-label="Default select example">
                                 <option disabled selected>เลือกสาขา...</option>
                                 @foreach ($curricolumn as $row )
@@ -78,6 +79,7 @@
                                 </button>
                             </div>
                         </div>
+                        </form>
                     </div>
 
 
@@ -121,7 +123,7 @@
                         </tbody>
                 </table>
                 <div class="mt-2 my-2">
-                    {{ $project_data->links() }}
+                    {{-- {{ $project_data->links() }} --}}
                 </div>
                 </div>
 
@@ -131,7 +133,7 @@
         </div>
     </body>
 
-        {{-- <div class="container mt-5 container-mobile">
+        <div class="container mt-5 container-mobile">
 
             <div class="row d-flex justify-content-center">
                 <div class="row col-lg-4">
@@ -248,7 +250,7 @@
 
 
 
-        </div> --}}
+        </div>
 
 
 
