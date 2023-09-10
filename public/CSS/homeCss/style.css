@@ -17,18 +17,14 @@
     height: 125px;
 }
 
-@media screen and (min-width:1200px) {
+@media screen and (min-width:768px) {
     .container-mobile{
 
         display: none;
     }
 
-    .container-lerg{
-        /* font-family: 'ThaisarabanPSK'; */
 
-    }
 }
-
 @media screen  and (max-width:767px) {
     .container-lerg{
         display:none;
@@ -36,8 +32,6 @@
     .container-mobile{
         font-family: 'Mitr';font-size: 22px;
     }
-
-
 }
 
 

@@ -18,18 +18,18 @@ class AuthController extends Controller
     private $dc;
     private $appId;
     private $appSecret;
-    
-    
+
+
     public function __construct(){
         $this->appId = env('NSRU_APP_ID');
         $this->appSecret = env('NSRU_APP_SECRET');
         $this->app = new App($this->appId, $this->appSecret);
         $this->myauth = $this->app->createMyAuth();
         $this->dc = $this->app->createDataCore();
-        
+
     }
 
-    public function signin() {        
+    public function signin() {
         $signinPostbackUrl = $this -> myauth->getSigninURL(route('signin_postback'));
         return redirect()->to($signinPostbackUrl);
     }
@@ -38,7 +38,7 @@ class AuthController extends Controller
         $this->myauth->doSigninPostback();
         $username = $request->input('username');
 
-        
+
         if($staff = $this->dc->find_staff($username)) {
             // บุคลากร
             $email = $username.'@local';
@@ -119,7 +119,7 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
-            
+
             return redirect()->intended('/');
         }else{
             return redirect()->back()->withErrors(['email' => 'Invalid credentials']);

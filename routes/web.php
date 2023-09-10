@@ -30,7 +30,7 @@ Route::post('/signin', [ AuthController::class, 'signinPostback' ])->name('signi
 Route::get('/signout', [ AuthController::class, 'signout' ])->name('signout');
 Route::get('/signout_postback', [ AuthController::class, 'signoutPostback' ])->name('signout_postback');
 
-Route::get('/admin/login',[AuthController::class,'login'])->name('login');
+Route::get('/login',[AuthController::class,'login'])->name('login');
 Route::post('/login',[AuthController::class,'loginPost'])->name('login_post');
 Route::get('/register',[AuthController::class,'Register'])->name('register');
 Route::post('/register',[AuthController::class,'RegisterPost'])->name('register_post');
