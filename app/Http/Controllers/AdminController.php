@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Crypt;
 use PDF;
 use App\Models\Projects;
 use App\Models\Project_author;
@@ -71,11 +72,11 @@ class AdminController extends Controller
             'project_abstract_th' => $request -> abstract_th,
             'project_abstract_en' => $request -> abstract_en,
             'project_keyword_th' => $request -> keyword_th,
-            'project_keyword_en' => $request -> keyword_eng,
+            'project_keyword_en' => $request -> keyword_en,
             'project_bookfile' => $project_path,
             'category_id' => $request -> category,
             'curricolumn_id' => $request -> curricolumn,
-
+            'advisor_id' => $request->advisor
         ]);
         if($update){
             return redirect()->back()->with('message_success', 'Update Success!');
@@ -174,6 +175,18 @@ class AdminController extends Controller
 
         stat_counter::where('project_id','=',$id)->increment('downloads');
         return Storage::download($file_path);
+    }
+
+    public function DeleteProject($id){
+        
+        $delete = Projects::find($id)->update([
+            'status' => 'off',
+        ]);
+        if($delete){
+            return redirect()->back()->with('message_success', 'Delete Success!');
+        }else{
+            return redirect()->back()->with('message_error', 'Update error');
+        }
     }
 
 

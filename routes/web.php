@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ HomeController::class, 'index' ])->name('index');
-Route::post('/',[HomeController::class,'homeSearch'])->name('home_search');
+Route::post('/search-result',[HomeController::class,'homeSearch'])->name('home_search');
 
 Route::get('/signin', [ AuthController::class, 'signin' ])->name('signin');
 Route::post('/signin', [ AuthController::class, 'signinPostback' ])->name('signin_postback');
@@ -41,12 +41,13 @@ Route::get('/upload',[UploadController::class,'showUploadForm'])->name('show_upl
 Route::post('/upload',[UploadController::class,'storeProject'])->name('store_project');
 Route::get('/project/view/{id}',[HomeController::class,'viewProject'])->name('view_project');
 
-Route::get('/profile-my-project',[HomeController::class,'Profile'])->name('profile');
-Route::get('/profile-edit-my-project/{id}',[HomeController::class,'editProject'])->name('edit_project');
+Route::get('/profile-my-project',[HomeController::class,'Profile'])->name('profile')->middleware('CheckProjectPromiss');
+Route::get('/profile-edit-my-project/{id}',[HomeController::class,'editProject'])->name('edit_project')->middleware('CheckProjectPromiss');;
 
 Route::get('/admin',[AdminController::class,'Adminindex'])->name('admin.index')->middleware('CheckAdmin');
 Route::get('/admin/project-list',[AdminController::class,'Projectlist'])->name('admin_view_project_list')->middleware('CheckAdmin');
 Route::post('/admin/project-list',[AdminController::class,'ProjectlistSearchPost'])->name('Project_list_search_post')->middleware('CheckAdmin');
+Route::post('/admin/project/delete/{id}',[AdminController::class,'DeleteProject'])->name('delete_prject')->middleware('CheckAdmin');
 // Route::get('/admin/project-list/create',[AdminController::class,'ProjectlistSearchPost'])->name('Project_list_search_post');
 
 

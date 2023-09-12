@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{config('app.name')}}</title>
 
         <!-- Fonts -->
         <link href="{{ asset('CSS\homeCss\style.css') }}" rel="stylesheet">
@@ -240,4 +240,5 @@
             </div>
         </div>
     </body>
+    @include('layout.footer')
 </html>

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{config('app.name')}}</title>
 
         <!-- Fonts -->
 
@@ -42,7 +42,7 @@
     @include('layout.top_name')
     <body class="antialiased">
 
-        <div class="container container-lerg" style="margin-top:50px;">
+        <div class="container container-lerg my-5" style="margin-top:50px;">
             <div class="row bg-white rounded-2 shadow-sm">
                 <div class="col">
                     <div class="row mt-3">
@@ -54,6 +54,7 @@
                         </div>
                         <form action="{{route('home_search')}}" class="col-1 input-group" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('POST')
                             <div class="mt-3">
                             <select name="curricolumn" class="form-select border" aria-label="Default select example">
                                 <option disabled selected>เลือกสาขา...</option>
@@ -163,9 +164,9 @@
                         $id_encrypt = Crypt::encrypt($row -> id);
                     @endphp
 
-                    <a class="nav-link row border col-lg-6 col-12" href="{{route('view_project',$id_encrypt)}}">
+                    <a class="nav-link row  col-lg-6 col-12" href="{{route('view_project',$id_encrypt)}}">
 
-                            <div class="col-xl-12 border shadow-sm project">
+                            <div class="col-xl-12  shadow-sm project">
                                 <div class="row mt-1">
                                     <div class="col-9 col-xl-8 fs-4 text-primary project-name-th">
                                         {{$row -> project_name_th}}
@@ -212,27 +213,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row d-flex justify-content-end align-items-center my-2">
-                                            <div class="col-2 d-flex justify-content-end align-items-center me-3">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye text-secondary" viewBox="0 0 16 16">
-                                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-                                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-                                                </svg>
-                                                <div class="col-1 col-lg-1  d-flex justify-content-start text-secondary mx-2" style="font-size: 14px;">
-                                                    250
-                                                </div>
-                                            </div>
-                                            <div class="col-2 col-lg-2 d-flex justify-content-end me-3">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download text-secondary" viewBox="0 0 16 16">
-                                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                                                  </svg>
-                                                  <div class="col-1 d-flex justify-content-start text-secondary mx-2 " style="font-size: 14px;">
-                                                    113
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                        
 
                                     </div>
                                 </div>
@@ -256,5 +237,8 @@
 
             </div>
         </div>
+        
     </body>
+    @include('layout.footer')
 </html>
+

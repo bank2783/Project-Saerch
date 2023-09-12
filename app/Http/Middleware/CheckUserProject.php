@@ -19,7 +19,7 @@ class CheckUserProject
     {
         if(Auth::check()){
             $user_id = Auth::user()->id;
-            $project_author = Project_author::pluck('user_id')->toArray();
+            $project_author = Project_author::where('status','=','on')->pluck('user_id')->toArray();
             if(in_array($user_id,$project_author)){
                return redirect('/');
             }else{

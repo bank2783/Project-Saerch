@@ -40,8 +40,6 @@ class UploadController extends Controller
             'keyword_eng' => ['required'],
             'curricolumn' => ['required'],
             'advisor_name' => ['required'],
-            'advisor_tel' => ['required'],
-            'advisor_email' => ['required'],
             'author_name' => ['required'],
             'author_tel' => ['required'],
             'author_email' => ['required'],

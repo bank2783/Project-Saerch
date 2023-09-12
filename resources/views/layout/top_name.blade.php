@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row fs-2" style="margin-top:15px;">
                 <div class="col">
-                    <span class="text-white">CIT Project Database</span>
+                    <span class="text-white">CIT PROJECT DATABSE</span>
                 </div>
             </div>
             <div class="row fs-5">

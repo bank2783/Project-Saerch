@@ -4,12 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{config('app.name')}}</title>
 
         <!-- Fonts -->
 
         <link href="{{ asset('CSS\homeCss\view_project_css.css') }}" rel="stylesheet">
         <link href="{{ asset('CSS\homeCss\style.css') }}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Mitr' rel='stylesheet'>
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -160,7 +161,27 @@
                                 <div class=" mt-5 row justify-content-center d-flex" style="margin-left:1px;">
                                     <div class="col-4 col-lg-4">
                                         <div class="col-4 fs-5  text-white   text-center" style="width:100%">
-                                            <span class="bg-primary pe-3 px-3 rounded-3" style="font-size:20px;">บทคัดย่อ</span>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                บทคัดย่อ
+                                              </button>
+                                            
+                                              <!-- Modal -->
+                                              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Abstract</h1>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body text-dark">
+                                                        {{$project_data->project_abstract_th}}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
                                         </div>
                                     </div>
                                 </div>
@@ -236,4 +257,5 @@
             </div>
         </div>
     </body>
+    @include('layout.footer')
 </html>

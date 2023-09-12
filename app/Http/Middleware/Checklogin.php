@@ -17,10 +17,10 @@ class Checklogin
      */
     public function handle(Request $request, Closure $next)
     {
-       if(Autho::check()){
+       if(Auth::check()){
         return $next($request);
        }else{
-        return redirect()->route('sigin');
+        return redirect()->route('signin');
        }
         
     }

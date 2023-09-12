@@ -15,6 +15,7 @@ use App\Models\Project_author;
 use App\Models\Category;
 use App\Models\Curricolumn;
 use App\Models\stat_counter;
+
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use SplFileInfo;
 
@@ -32,6 +33,7 @@ class HomeController extends Controller
         $category = Category::where('status','=','on')->get();
         $curricolumn = Curricolumn::where('status','=','on')->get();
         $project_data = Projects::where('status','=','on')->paginate(8);
+        
 
 
         return view('welcome',compact('project_data','category','curricolumn'));
