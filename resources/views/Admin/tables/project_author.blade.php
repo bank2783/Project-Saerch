@@ -148,7 +148,7 @@
             @foreach ($project_author as $row )
             <tr>
                 <td>{{$row -> project_id}}</td>
-                <td>{{$row -> user_id}}</td>
+                <td>{{$row -> Users->name}}</td>
 
                 <td>
                     <!-- Button trigger modal -->

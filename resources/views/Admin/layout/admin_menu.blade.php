@@ -48,7 +48,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('show_tables')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+            <span>จัดการข้อมูล</span></a>
     </li>
 
     <!-- Divider -->

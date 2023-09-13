@@ -29,7 +29,7 @@
         <div class="col-12 text-center d-flex justify-content-center">
             <div class="col-8 col-lg-4 col-sm-4">
                 <span class="text-secondary text-break">
-                    Phone: 056-219100-1160
+                    Phone: 056-219100-1134
                 </span>
             </div>
         </div>

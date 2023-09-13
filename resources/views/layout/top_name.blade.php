@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col top-card">
         <div class="container">
-            <div class="row fs-2" style="margin-top:15px;">
+            <div class="row fs-4" style="margin-top:15px;">
                 <div class="col">
-                    <span class="text-white">CIT PROJECT DATABSE</span>
+                    <span class="text-white">ระบบสารสนเทศเพื่อการให้บริการสืบค้นโครงงานฉบับเต็มของสาขาวิชาคอมพิวเตอร์และเทคโนโลยีสารสนเทศ</span>
                 </div>
             </div>
             <div class="row fs-5">
@@ -19,3 +19,5 @@
         </div>
     </div>
 </div>
+
+

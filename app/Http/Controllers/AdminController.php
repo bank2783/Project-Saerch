@@ -193,6 +193,7 @@ class AdminController extends Controller
         
         $author_insert = Author::create([
             'author_name' => $request->author_name,
+            'curicolumn_id' => $request->curricolumn,
             'status' => 'on'
         ]);
         if ($request->hasFile('project_file')) {
@@ -201,7 +202,6 @@ class AdminController extends Controller
             $project_name = $project_file->getClientOriginalName();
             $path = $request->file('project_file')->store('file/project');
         }
-        
         
         $insert = Projects::create([
             'project_name_th' => $request->project_name_th,

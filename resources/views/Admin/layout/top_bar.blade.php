@@ -6,8 +6,7 @@
     </button>
 
     <!-- Topbar Search -->
-    <form
-
+    {{-- <form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
         action="{{route('Project_list_search_post')}}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -22,7 +21,7 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> --}}
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
@@ -186,7 +185,7 @@
                     Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="{{route('signout')}}" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>

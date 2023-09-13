@@ -11,13 +11,14 @@
     background: linear-gradient(rgb(196, 226, 255), rgb(236, 250, 255));
 }
 
-.top-card{
-    background-color: #07098f;
 
-    height: 125px;
-}
 
 @media screen and (min-width:768px) {
+    .top-card{
+        background-color: #07098f;
+    
+        height: 125px;
+    }
     .container-mobile{
 
         display: none;
@@ -25,12 +26,27 @@
 
 
 }
-@media screen  and (max-width:767px) {
-    .container-lerg{
-        display:none;
+@media screen  and (max-width:768px) {
+   
+    .top-card{
+        background-color: #07098f;
+    
+        height: 150px;
     }
+
     .container-mobile{
         font-family: 'Mitr';font-size: 22px;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .container-lerg{
+        display: none;
+    }
+    .top-card{
+        background-color: #07098f;
+    
+        height:180px;
     }
 }
 
