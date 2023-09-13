@@ -35,8 +35,6 @@ Route::post('/login',[AuthController::class,'loginPost'])->name('login_post');
 Route::get('/register',[AuthController::class,'Register'])->name('register');
 Route::post('/register',[AuthController::class,'RegisterPost'])->name('register_post');
 
-
-
 Route::get('/upload',[UploadController::class,'showUploadForm'])->name('show_upload_form')->middleware('CheckUserProject');
 Route::post('/upload',[UploadController::class,'storeProject'])->name('store_project');
 Route::get('/project/view/{id}',[HomeController::class,'viewProject'])->name('view_project');
@@ -84,6 +82,8 @@ Route::post('admin/table/category/delete',[CategoryController::class,'delete'])-
 
 Route::get('admin/table/users',[UsersController::class,'showUsers'])->name('show_users');
 
+
+Route::post('admin/addproject-by-admin',[AdminController::class,'addProjectByAdmin'])->name('add-project-by-addmin')->middleware('CheckAdmin');
 
 ////////////// Dowload PDF File ///////////////////
 Route::get('dowload/{id}',[AdminController::class,'Download'])->name('download.file');

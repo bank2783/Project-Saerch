@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -277,10 +276,106 @@
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                         </a> --}}
                                         <!-- Button trigger modal -->
+                                        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#handmake-project">
+    เพิ่มโครงงานแบบไม่มีรหัสนักศึกษา
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="handmake-project" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">เพิ่มโปรเจค</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('add-project-by-addmin')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                  <label class="form-label">ชื่อโครงงานภาษาไทย</label>
+                  <input type="text" name="project_name_th" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">ชื่อโครงงานภาษากฤษ</label>
+                    <input type="text" name="project_name_th" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">บทคัดย่อภาษาไทย</label>
+                    <textarea name="abstract_th" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">บทคัดย่อภาษาอังกฤษ</label>
+                    <textarea name="abstract_en" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">คีย์เวิร์ดภาษาไทย</label>
+                    <input type="text" name="keyword_th" class="form-control" aria-describedby="emailHelp">
+                    <div class="form-text">ใส่ , เพื่อแยกคำคีย์เวิร์ด</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">คีย์เวิร์ดภาษาอังกฤษ</label>
+                    <input type="text" name="keyword_en" class="form-control" aria-describedby="emailHelp">
+                    <div class="form-text">ใส่ , เพื่อแยกคำคีย์เวิร์ด</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">ปีการศึกษาที่ทำโครงงาน</label>
+                    <input type="text" name="education_year" class="form-control" aria-describedby="emailHelp">
+                </div>
+                 
+                 <div class="mb-3">
+                    <select name="advisor" class="form-select" aria-label="Default select example">
+                        <option disabled selected>อาจารย์ที่ปรึกษา</option>
+                        @foreach ($advisor as $row )
+                        <option value="{{$row->id}}">{{$row->advisor_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            <div class="mb-3">
+                    <select name="curricolumn" class="form-select" aria-label="Default select example">
+                        <option disabled selected>สาขาวิชา</option>
+                        @foreach ($curricolumn as $row )
+                        <option value="{{$row->id}}">{{$row->curricolumn_name}}</option>
+                        @endforeach
+                    </select>
+            </div>
+            <div class="mb-3">
+                <select name="category" class="form-select" aria-label="Default select example">
+                    <option disabled selected>ประเภท</option>
+                    @foreach ($category as $row )
+                    <option value="{{$row->id}}">{{$row->category_name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ชื่อผู้จัดทำโครงงาน</label>
+                <input type="text" name="author_name" class="form-control" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">ไฟล์โครงงาน</label>
+                <input type="file" name="project_file" class="form-control" aria-describedby="emailHelp">
+            </div>
+                
+               
+                <button type="submit" class="btn btn-primary">อัพโหลด</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Create
   </button>
-
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

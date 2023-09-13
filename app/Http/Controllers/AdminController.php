@@ -189,5 +189,52 @@ class AdminController extends Controller
         }
     }
 
+    public function addProjectByAdmin(Request $request){
+        
+        $author_insert = Author::create([
+            'author_name' => $request->author_name,
+            'status' => 'on'
+        ]);
+        if ($request->hasFile('project_file')) {
+            $destination_path = 'file/project'; // เส้นทางไปยังโฟลเดอร์ที่ต้องการใน storage
+            $project_file = $request->file('project_file');
+            $project_name = $project_file->getClientOriginalName();
+            $path = $request->file('project_file')->store('file/project');
+        }
+        
+        
+        $insert = Projects::create([
+            'project_name_th' => $request->project_name_th,
+            'project_name_en' => $request->project_name_en,
+            'project_abstract_th' => $request->abstract_th,
+            'project_abstract_en' => $request->abstract_en,
+            'project_keyword_th' => $request->keyword_th,
+            'project_keyword_en' => $request->keyword_en,
+            'project_bookfile' => $path,
+            'author_id' => $author_insert->id,
+            'advisor_id' => $request->advisor,
+            'category_id' => $request->category,
+            'curricolumn_id' => $request->curricolumn,
+            'education_year' => $request->education_year,
+            'status' => 'on'
+        ]);
+
+        $stat_counter = new stat_counter();
+        $stat_counter ->project_id = $insert ->id;
+        $stat_counter ->views = 0;
+        $stat_counter->downloads = 0;
+        $stat_counter->save();
+
+
+
+        if($insert){
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
+
+
+    }
+
 
 }
