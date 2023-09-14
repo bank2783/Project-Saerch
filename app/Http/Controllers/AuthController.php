@@ -47,7 +47,7 @@ class AuthController extends Controller
             } else {
                 $newUser = new User();
                 dd($staff);
-                $newUser->name = $staff->fullname_th;
+                $newUser->name = $staff->full_name;
                 $newUser->email = $email;
                 $newUser->password = bcrypt(Str::random(16));
                 $newUser->save();

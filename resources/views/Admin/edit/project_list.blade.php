@@ -298,7 +298,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">ชื่อโครงงานภาษากฤษ</label>
-                    <input type="text" name="project_name_th" class="form-control" aria-describedby="emailHelp">
+                    <input type="text" name="project_name_en" class="form-control" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">บทคัดย่อภาษาไทย</label>

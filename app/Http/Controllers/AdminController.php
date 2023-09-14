@@ -168,8 +168,8 @@ class AdminController extends Controller
     }
 
     public function Download($id){
-        $project_data = Projects::find($id)->first();
-
+        $project_data = Projects::where('id','=',$id)->first();
+        
         $file_path = $project_data -> project_bookfile;
         $file_name = $project_data -> project_name_th;
 

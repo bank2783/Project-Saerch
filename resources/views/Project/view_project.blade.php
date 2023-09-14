@@ -183,6 +183,7 @@
                                           </svg>
                                     </span>
                                 </div>
+                                
                                 <a href="{{route('download.file',$project_data->id)}}"  class="col-8 text-start">
                                     <span class="" style="font-size:18px;">
                                         ดาวน์โหลดไฟล์เล่มโครงงาน PDF
