@@ -112,8 +112,6 @@ class HomeController extends Controller
                                     ->where('curricolumn_id','=',$request->curricolumn)
                                     ->where('category_id','=',$request->category)->get();
         }
-
-
         return view('welcome',compact('project_data','category','curricolumn'));
     }
 

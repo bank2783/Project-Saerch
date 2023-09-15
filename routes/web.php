@@ -88,6 +88,8 @@ Route::post('admin/addproject-by-admin',[AdminController::class,'addProjectByAdm
 ////////////// Dowload PDF File ///////////////////
 Route::get('dowload/{id}',[AdminController::class,'Download'])->name('download.file');
 
+Route::get('/advisor_search',[AdminController::class,'advosor_search'])->name('advisor-search');
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

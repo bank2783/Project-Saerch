@@ -225,8 +225,6 @@ class AdminController extends Controller
         $stat_counter->downloads = 0;
         $stat_counter->save();
 
-
-
         if($insert){
             return redirect()->back();
         }else{
@@ -235,6 +233,8 @@ class AdminController extends Controller
 
 
     }
+
+    
 
 
 }
