@@ -32,7 +32,7 @@ class HomeController extends Controller
         // }
         $category = Category::where('status','=','on')->get();
         $curricolumn = Curricolumn::where('status','=','on')->get();
-        $project_data = Projects::where('status','=','on')->paginate(8);
+        $project_data = Projects::where('status','=','on')->paginate(2);
         
 
 
@@ -86,31 +86,34 @@ class HomeController extends Controller
         $project_data = Projects::where('status','=','on')->paginate(8);
         if($request->input('keyword_search')){
             $keyword = $request->input('keyword_search');
-            $project_data = Projects::where('project_name_th','like','%'.$keyword.'%')->get();
+            $project_data = Projects::where('project_name_th','like','%'.$keyword.'%')->paginate(8);
         }
         elseif($request->input('curricolumn')){
-            $project_data = Projects::where('curricolumn_id','=',$request->curricolumn)->get();
+            
+            $project_data = Projects::where('curricolumn_id','=',$request->curricolumn)->paginate(8);
+            
         }
         elseif($request->input('category')){
-            $project_data = Projects::where('category_id','=',$request->category)->get();
+           
+            $project_data = Projects::where('category_id','=',$request->category)->paginate(8);
         }
         elseif($request->input('keyword_search') and $request->input('curricolumn')){
             $keyword = $request->input('keyword_search');
             $project_data = Projects::where('project_name_th','like','%'.$keyword.'%')
-                                   ->where('curricolumn_id','=',$request->curricolumn)->get();
+                                   ->where('curricolumn_id','=',$request->curricolumn)->paginate(8);
         }
         elseif($request->input('keyword_search') and $request->input('category') ){
             $keyword = $request->input('keyword_search');
         $project_data = Projects::where('project_name_th','like','%'.$keyword.'%')
-                    ->where('category_id','=',$request->category)->get();
+                    ->where('category_id','=',$request->category)->paginate(8);
         }elseif($request->input('curricolumn') and $request->input('category')){
             $project_data = Projects::where('curricolumn_id','=',$request->curricolumn)
-                        ->where('category','=',$request->category)->get();
+                        ->where('category','=',$request->category)->paginate(8);
         }elseif($request->input('keyword_search') and $request->input('curricolumn') and $request->input('category') ){
             $keyword = $request->input('keyword_search');
             $project_data = Projects::where('project_name_th','like','%'.$keyword.'%')
                                     ->where('curricolumn_id','=',$request->curricolumn)
-                                    ->where('category_id','=',$request->category)->get();
+                                    ->where('category_id','=',$request->category)->paginate(8);
         }
         return view('welcome',compact('project_data','category','curricolumn'));
     }

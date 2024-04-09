@@ -606,7 +606,7 @@
                                             <tr>
 
                                                 <td>{{$row-> Author -> author_sid }}</td>
-                                                <td>{{Str::limit($row->  project_name_th,20) }}</td>
+                                                <td>{{Str::limit($row->  project_name_th,60) }}</td>
                                                 <td>{{$row->  Category -> category_name }}</td>
                                                 <td>{{$row->  Curricolumn -> curricolumn_name }}</td>
                                                 <td>

@@ -234,7 +234,18 @@ class AdminController extends Controller
 
     }
 
-    
-
-
+    public function advisor_search(Request $request){
+        
+        $category = Category::where('status','=','on')->get();
+        $curricolumn = Curricolumn::where('status','=','on')->get();
+        $project_data = Projects::where('status','=','on')->paginate(8);
+        if($request->input('advisor_search')){
+            $advisor_search = $request->input('advisor_search');
+            $advisor = Advisor::where('advisor_name','like','%'.$advisor_search.'%')->first();
+            if($advisor){
+                $project_data = Projects::where('advisor_id','=',$advisor->id)->paginate(8);
+            }
+        }
+        return view('welcome',compact('project_data','category','curricolumn'));  
+}
 }

@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ HomeController::class, 'index' ])->name('index');
-Route::post('/search-result',[HomeController::class,'homeSearch'])->name('home_search');
+Route::any('/search-result',[HomeController::class,'homeSearch'])->name('home_search');
 
 Route::get('/signin', [ AuthController::class, 'signin' ])->name('signin');
 Route::post('/signin', [ AuthController::class, 'signinPostback' ])->name('signin_postback');
@@ -88,7 +88,7 @@ Route::post('admin/addproject-by-admin',[AdminController::class,'addProjectByAdm
 ////////////// Dowload PDF File ///////////////////
 Route::get('dowload/{id}',[AdminController::class,'Download'])->name('download.file');
 
-Route::get('/advisor_search',[AdminController::class,'advosor_search'])->name('advisor-search');
+Route::post('/advisor_search',[AdminController::class,'advisor_search'])->name('advisor-search');
 
 // Route::get('/', function () {
 //     return view('welcome');
