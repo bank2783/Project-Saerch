@@ -46,7 +46,6 @@ class AuthController extends Controller
                 Auth::login($user);
             } else {
                 $newUser = new User();
-                dd($staff);
                 $newUser->name = $staff->full_name;
                 $newUser->email = $email;
                 $newUser->password = bcrypt(Str::random(16));
@@ -61,7 +60,7 @@ class AuthController extends Controller
                 Auth::login($user);
             } else {
                 $newUser = new User();
-                $newUser->name = $student->fullname_th;
+                $newUser->name = $student->full_name;
                 $newUser->email = $email;
                 $newUser->password = bcrypt(Str::random(16));
                 $newUser->save();

@@ -7,10 +7,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{route('index')}}">HOME</a>
+            <a class="nav-link active" aria-current="page" href="{{route('index')}}">หน้าแรก</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="{{route('show_upload_form')}}">UPLOAD</a>
+            <a class="nav-link active" href="{{route('show_upload_form')}}">อัพโหลด</a>
           </li>
           {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,7 +34,7 @@
         </ul>
         
         <ul class="navbar-nav me-3">
-            <li class="nav-item"><a href="{{route('profile')}}" class="nav-link active"><span>MY PROJECT</span></a></li>
+            <li class="nav-item"><a href="{{route('profile')}}" class="nav-link active"><span>โปรเจคของฉัน</span></a></li>
             <li class="nav-item"><span class="me-2 nav-link active">{{Auth::user()->name}}</span></li>
             <li class="nav-item"><a href="{{route('signout')}}" class=" btn btn-light border">ออกจากระบบ</a></li>
         </ul>
