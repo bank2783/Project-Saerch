@@ -49,7 +49,6 @@ class AuthController extends Controller
                 $newUser->name = $staff->full_name;
                 $newUser->email = $email;
                 $newUser->password = bcrypt(Str::random(16));
-                $newUser->status = 'on';
                 $newUser->save();
                 Auth::login($newUser);
             }
