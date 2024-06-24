@@ -33,6 +33,7 @@
 
     <body class="antialiased">
         @include('layout.top_name')
+        
         @if($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -108,13 +109,15 @@
 
                 <div class="mb-3 col-6 col-xl-3">
                     <label for="exampleInputPassword1" class="form-label">ชื่ออาจารย์ที่ปรึกษา</label>
-                    <select class="form-select" name="advisor_name" aria-label="Default select example">
-                        <option selected>ชื่ออาจารย์ที่ปรึกษา...</option>
+                    <select id="advisor_select" class="form-select" name="advisor_name" aria-label="Default select example">
+                        <option value="0" selected>ชื่ออาจารย์ที่ปรึกษา...</option>
                         @foreach ($Advisor as  $row )
                         <option value="{{$row -> id}}">{{$row -> advisor_name}}</option>
                         @endforeach
                     </select>
                 </div>
+
+                
 
 
 

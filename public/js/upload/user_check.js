@@ -41,3 +41,6 @@
                     inputContainer.appendChild(inputWrapper);
                     counter++;
                     }
+
+// validate advisor selected //
+
